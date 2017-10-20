@@ -58,9 +58,16 @@ int main(void) {
 	m.length = 1;
 	m.data[0] = (uint8_t) 'H';*/
 	//CAN_send_message(&m);
-	_delay_ms(300);
-	CAN_print_message(CAN_recieve_data());
+	can_message_t msg;
+	while(1){
+	if(MCP2515_read(MCP_CANINTF) & 1){
+		CAN_recieve_data(&msg);
+		CAN_print_message(msg);
+		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);
+		
+		_delay_ms(300);
+		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
+	}
+	}
 	
-	
-	while(1){};
 }

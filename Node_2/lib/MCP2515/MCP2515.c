@@ -102,6 +102,7 @@ void MCP2515_bit_modify(uint8_t addr, uint8_t maskbyte, uint8_t databyte){
 	SPI_enable_chipselect();
 	
 	SPI_send(MCP_BITMOD);
+	SPI_send(addr);
 	SPI_send(maskbyte);
 	SPI_send(databyte);
 	

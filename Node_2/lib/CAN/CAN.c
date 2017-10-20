@@ -10,7 +10,7 @@ void CAN_init(void){
 	
 	MCP2515_init();
 	MCP2515_bit_modify(MCP_CANCTRL,0b11100000, MODE_NORMAL);
-	
+	MCP2515_bit_modify(MCP_RXB0CTRL,0b01100100, 0b01100000);
 	
 }
 
@@ -45,26 +45,23 @@ void CAN_transmit_complete(){
 	
 	
 }
-can_message_t CAN_recieve_data(){
-	
-	can_message_t message;
-	memset(&message, 0, sizeof(can_message_t));
+void CAN_recieve_data(can_message_t *message){
+	//memset(&message, 0, sizeof(can_message_t));
 	
 	//if(MCP_CANINTF & 1) {
-		printf("Jeg er i datarecieve");
-		message.id = MCP2515_read(MCP_TXB0SIDH<<3) | MCP2515_read(MCP_TXB0SIDL>>5);
-		message.length = MCP2515_read(MCP_TXB0DLC) & 0b00001111;						//DLC3:0 in TXB0DLC-register
+		printf("Jeg er i datarecieve__");
+		message->id = 0xff & (MCP2515_read(MCP_RXB0SIDH)<<3 | MCP2515_read(MCP_RXB0SIDL)>>5);
+		message->length = MCP2515_read(MCP_RXB0DLC) & 0b00001111;						//DLC3:0 in TXB0DLC-register
 		
-		
-		for (uint8_t i = 0; i < message.length; i++) {
-			message.data[i] = MCP2515_read(MCP_TXB0D0+i);
+		for (uint8_t i = 0; i < message->length; i++) {
+			message->data[i] = MCP2515_read(MCP_RXB0D0+i);
+			printf("Msg i = %d = %c\n", i, message->data[i]);
 		}
 		
 	//}
 	
 	//MCP_CANINTF &= (~(0b00000001));
 	
-	return message;
 	
 }
 
