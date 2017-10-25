@@ -10,7 +10,10 @@ lib/PWM/PWM.d lib/PWM/PWM.o: ../lib/PWM/PWM.c ../lib/PWM/PWM.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\common.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h \
+ ../lib/PWM/../CAN/CAN.h ../lib/PWM/../CAN/../MCP2515/MCP2515.h \
+ ../lib/PWM/../CAN/../MCP2515/../SPI/SPI.h \
+ ../lib/PWM/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h
 
 ../lib/PWM/PWM.h:
 
@@ -37,3 +40,11 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h:
+
+../lib/PWM/../CAN/CAN.h:
+
+../lib/PWM/../CAN/../MCP2515/MCP2515.h:
+
+../lib/PWM/../CAN/../MCP2515/../SPI/SPI.h:
+
+../lib/PWM/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:

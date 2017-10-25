@@ -62,17 +62,28 @@ int main(void) {
 	m.length = 1;
 	m.data[0] = (uint8_t) 'H';*/
 	//CAN_send_message(&m);
+	
+	
+	
 	PWM_init();
+	
+	
 	while(1){
-	can_message_t msg;
+	
+	/*can_message_t msg;
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
 		CAN_print_message(msg);
-		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);
+		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
 		
-		_delay_ms(300);
+		float dc = PWM_get_duty_cycle();
+		printf("dc = %d\n", dc);
+		PWM_set_duty_cycle(dc);	
+		
+		
+		
 		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
-	}
+	
 	}
 	
 }

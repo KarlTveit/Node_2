@@ -55,7 +55,7 @@ void CAN_recieve_data(can_message_t *message){
 		
 		for (uint8_t i = 0; i < message->length; i++) {
 			message->data[i] = MCP2515_read(MCP_RXB0D0+i);
-			printf("Msg i = %d = %d\n", i, message->data[i]);
+			//printf("Msg i = %d = %d\n", i, message->data[i]);
 		}
 		
 	//}
@@ -82,3 +82,4 @@ void CAN_print_message(can_message_t message) {
 	
 	printf("\n\n\n");
 }
+
