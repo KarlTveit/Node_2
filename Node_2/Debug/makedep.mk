@@ -16,9 +16,13 @@ lib\MENU\MENU.c
 
 lib\OLED\OLED.c
 
+lib\PWM\PWM.c
+
 lib\SPI\SPI.c
 
 lib\SRAM\SRAM.c
+
+lib\TIMER\TIMER.c
 
 lib\UART\UART.c
 

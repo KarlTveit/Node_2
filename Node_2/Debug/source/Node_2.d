@@ -19,9 +19,10 @@ source/Node_2.d source/Node_2.o: ../source/Node_2.c \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
- ../source/../lib/UART/UART.h ../source/../lib/ADC/ADC.h \
- ../source/../lib/ADC/../UART/UART.h ../source/../lib/JOY/JOY.h \
- ../source/../lib/JOY/../ADC/ADC.h ../source/../lib/JOY/../CAN/CAN.h \
+ ../source/../lib/PWM/PWM.h ../source/../lib/UART/UART.h \
+ ../source/../lib/ADC/ADC.h ../source/../lib/ADC/../UART/UART.h \
+ ../source/../lib/JOY/JOY.h ../source/../lib/JOY/../ADC/ADC.h \
+ ../source/../lib/JOY/../CAN/CAN.h \
  ../source/../lib/JOY/../CAN/../MCP2515/MCP2515.h \
  ../source/../lib/JOY/../CAN/../MCP2515/../SPI/SPI.h \
  ../source/../lib/JOY/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
@@ -71,6 +72,8 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h:
+
+../source/../lib/PWM/PWM.h:
 
 ../source/../lib/UART/UART.h:
 

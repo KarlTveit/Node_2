@@ -49,18 +49,19 @@ void CAN_recieve_data(can_message_t *message){
 	//memset(&message, 0, sizeof(can_message_t));
 	
 	//if(MCP_CANINTF & 1) {
-		printf("Jeg er i datarecieve__");
+		//printf("Jeg er i datarecieve__");
 		message->id = 0xff & (MCP2515_read(MCP_RXB0SIDH)<<3 | MCP2515_read(MCP_RXB0SIDL)>>5);
 		message->length = MCP2515_read(MCP_RXB0DLC) & 0b00001111;						//DLC3:0 in TXB0DLC-register
 		
 		for (uint8_t i = 0; i < message->length; i++) {
 			message->data[i] = MCP2515_read(MCP_RXB0D0+i);
-			printf("Msg i = %d = %c\n", i, message->data[i]);
+			printf("Msg i = %d = %d\n", i, message->data[i]);
 		}
 		
 	//}
 	
 	//MCP_CANINTF &= (~(0b00000001));
+	MCP2515_bit_modify(MCP_CANINTF, 0b00000001, 0b00000000);
 	
 	
 }
@@ -76,8 +77,8 @@ void CAN_print_message(can_message_t message) {
 	
 	for (uint8_t i = 0; i < message.length; i++) {
 			
-		printf("%c", message.data[i]);
+		printf("%d ", message.data[i]);
 	}
 	
-	printf("\n");
+	printf("\n\n\n");
 }

@@ -21,7 +21,7 @@
 #include "stdio.h"
 
 
-
+#include "../lib/PWM/PWM.h"
 #include "../lib/UART/UART.h"
 #include "../lib/ADC/ADC.h"
 #include "../lib/JOY/JOY.h"
@@ -44,6 +44,10 @@ ISR(USART0_RXC_vect)
 
 
 int main(void) {
+	
+	//disable alle interrupts
+	cli();
+	
 	DDRA = 0xFF;
 	UART_Init(UBRR);
 	fdevopen(&UART_Transmit, &UART_Recieve);
@@ -58,8 +62,9 @@ int main(void) {
 	m.length = 1;
 	m.data[0] = (uint8_t) 'H';*/
 	//CAN_send_message(&m);
-	can_message_t msg;
+	PWM_init();
 	while(1){
+	can_message_t msg;
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
 		CAN_print_message(msg);
