@@ -9,11 +9,16 @@ void ADC_init(void){
 			|	(1<<ADPS0)
 			|	(1<<ADPS1)
 			|	(1<<ADPS2);
+	DDRF &= ~(1<<PF0);
+	ADMUX |= (1<< REFS0);
+	ADCSRA |= (1<<ADIE);
+	ADCSRA &= ~(1<<ADIF);
+	
 }
 
 
 uint8_t ADC_read(channel ch){
-	ADMUX = (1<< REFS0) | (ch & 0x1f);
+	 /*| (ch & 0x1f)*/
 	
 	ADCSRA |=	(1<< ADSC);
 	

@@ -31,7 +31,7 @@
 #include "../lib/SPI/SPI.h"
 #include "../lib/MCP2515/MCP2515.h"
 #include "../lib/CAN/CAN.h"
-
+#include "../lib/IR/IR.h"
 uint8_t RECEIVED = 0;
 
 ISR(USART0_RXC_vect)
@@ -54,7 +54,7 @@ int main(void) {
 	//init_SRAM();
 	
 	
-	printf("hello\n");
+	//printf("hello\n");
 	CAN_init();
 /*
 	can_message_t m;
@@ -67,9 +67,10 @@ int main(void) {
 	
 	PWM_init();
 	
-	
+	IR_init();
 	while(1){
-	
+		
+		printf("ADC IR %d\n",IR_read());
 	/*can_message_t msg;
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
@@ -77,7 +78,7 @@ int main(void) {
 		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
 		
 		float dc = PWM_get_duty_cycle();
-		printf("dc = %d\n", dc);
+		//printf("dc = %d\n", dc);
 		PWM_set_duty_cycle(dc);	
 		
 		

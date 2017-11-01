@@ -8,6 +8,8 @@ lib\CAN\CAN.c
 
 lib\CAN\SPI.c
 
+lib\IR\IR.c
+
 lib\JOY\JOY.c
 
 lib\MCP2515\MCP2515.c

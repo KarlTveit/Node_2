@@ -5,12 +5,13 @@
  *  Author: karlmt
  */ 
 
-
 #ifndef IR_H_
 #define IR_H_
 
-uint8_t IR_obstructed(void);
-void IR_init(uint8_t);
+#include <avr/io.h>
+
+uint8_t IR_read(void);
+void IR_init(void);
 
 
 #endif /* IR_H_ */

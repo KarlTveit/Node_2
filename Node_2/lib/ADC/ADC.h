@@ -23,12 +23,13 @@
 typedef enum{
 	joyY = 0x4,
 	joyX = 0x5,
+	IR = 3
 	}channel;
 
 
 
 
-uint8_t ADC_read(channel joystick);
+uint8_t ADC_read(channel ch);
 void ADC_init(void);
 
 #endif /* ADC_H_ */

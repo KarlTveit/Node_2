@@ -31,7 +31,7 @@ source/Node_2.d source/Node_2.o: ../source/Node_2.c \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\pgmspace.h \
  ../source/../lib/OLED/OLED_COMMANDS.h ../source/../lib/MENU/MENU.h \
  ../source/../lib/SPI/SPI.h ../source/../lib/MCP2515/MCP2515.h \
- ../source/../lib/CAN/CAN.h
+ ../source/../lib/CAN/CAN.h ../source/../lib/IR/IR.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -110,3 +110,5 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../source/../lib/MCP2515/MCP2515.h:
 
 ../source/../lib/CAN/CAN.h:
+
+../source/../lib/IR/IR.h:
