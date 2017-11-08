@@ -139,6 +139,12 @@
     <Compile Include="lib\CAN\SPI.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\DAC\DAC.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\DAC\DAC.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\IR\IR.c">
       <SubType>compile</SubType>
     </Compile>
@@ -163,6 +169,12 @@
     <Compile Include="lib\MENU\MENU.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\MOTOR\MOTOR.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\MOTOR\MOTOR.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\OLED\fonts.h">
       <SubType>compile</SubType>
     </Compile>
@@ -175,10 +187,22 @@
     <Compile Include="lib\OLED\OLED_COMMANDS.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\PID\PID.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\PID\PID.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\PWM\PWM.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="lib\PWM\PWM.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\SOLEDNOID\SOLENOID.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\SOLEDNOID\SOLENOID.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="lib\SPI\SPI.c">
@@ -199,6 +223,12 @@
     <Compile Include="lib\TIMER\TIMER.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\TWI\TWI_Master.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\TWI\TWI_Master.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\UART\UART.c">
       <SubType>compile</SubType>
     </Compile>
@@ -213,15 +243,20 @@
     <Folder Include="lib\" />
     <Folder Include="lib\ADC\" />
     <Folder Include="lib\CAN\" />
+    <Folder Include="lib\DAC\" />
     <Folder Include="lib\JOY\" />
     <Folder Include="lib\MCP2515\" />
     <Folder Include="lib\MENU\" />
     <Folder Include="lib\IR" />
+    <Folder Include="lib\MOTOR" />
+    <Folder Include="lib\SOLEDNOID" />
+    <Folder Include="lib\PID" />
     <Folder Include="lib\TIMER" />
     <Folder Include="lib\PWM" />
     <Folder Include="lib\OLED\" />
     <Folder Include="lib\SPI\" />
     <Folder Include="lib\SRAM\" />
+    <Folder Include="lib\TWI\" />
     <Folder Include="lib\UART\" />
     <Folder Include="source" />
   </ItemGroup>

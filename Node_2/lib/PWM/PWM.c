@@ -54,7 +54,7 @@ float PWM_get_duty_cycle(void) {
 	
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
-		CAN_print_message(msg);
+		//CAN_print_message(msg);
 		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);	
 	}
 	float x_pos = msg.data[0];

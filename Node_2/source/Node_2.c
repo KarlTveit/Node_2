@@ -32,6 +32,9 @@
 #include "../lib/MCP2515/MCP2515.h"
 #include "../lib/CAN/CAN.h"
 #include "../lib/IR/IR.h"
+#include "../lib/DAC/DAC.h"
+#include "../lib/TWI/TWI_Master.h"
+#include "../lib/PID/PID.h"
 uint8_t RECEIVED = 0;
 
 ISR(USART0_RXC_vect)
@@ -66,25 +69,38 @@ int main(void) {
 	
 	
 	PWM_init();
-	
+	DAC_init();
+	MOTOR_init();
 	IR_init();
+	//PID_init();
+
+	
 	while(1){
 		
-		printf("ADC IR %d\n",IR_read());
+		//printf("ADC IR %d\n",IR_read());
 	/*can_message_t msg;
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
 		CAN_print_message(msg);
 		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
+		 
+		can_message_t msg;
+		CAN_recieve_data(&msg);
+		CAN_print_message(msg);
 		
 		float dc = PWM_get_duty_cycle();
 		//printf("dc = %d\n", dc);
 		PWM_set_duty_cycle(dc);	
 		
+		printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(),MOTOR_get_direction());
+		
+		
+		
+		MOTOR_write(MOTOR_get_speed(), MOTOR_get_direction());
 		
 		
 		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
-	
+
 	}
 	
 }

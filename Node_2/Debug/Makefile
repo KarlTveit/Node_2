@@ -36,15 +36,20 @@ SUBDIRS :=  \
 ../lib/ \
 ../lib/ADC/ \
 ../lib/CAN/ \
+../lib/DAC/ \
 ../lib/JOY/ \
 ../lib/MCP2515/ \
 ../lib/MENU/ \
 ../lib/IR \
+../lib/MOTOR \
+../lib/SOLEDNOID \
+../lib/PID \
 ../lib/TIMER \
 ../lib/PWM \
 ../lib/OLED/ \
 ../lib/SPI/ \
 ../lib/SRAM/ \
+../lib/TWI/ \
 ../lib/UART/ \
 ../source
 
@@ -54,15 +59,20 @@ C_SRCS +=  \
 ../lib/ADC/ADC.c \
 ../lib/CAN/CAN.c \
 ../lib/CAN/SPI.c \
+../lib/DAC/DAC.c \
 ../lib/IR/IR.c \
 ../lib/JOY/JOY.c \
 ../lib/MCP2515/MCP2515.c \
 ../lib/MENU/MENU.c \
+../lib/MOTOR/MOTOR.c \
 ../lib/OLED/OLED.c \
+../lib/PID/PID.c \
 ../lib/PWM/PWM.c \
+../lib/SOLEDNOID/SOLENOID.c \
 ../lib/SPI/SPI.c \
 ../lib/SRAM/SRAM.c \
 ../lib/TIMER/TIMER.c \
+../lib/TWI/TWI_Master.c \
 ../lib/UART/UART.c \
 ../source/Node_2.c
 
@@ -77,15 +87,20 @@ OBJS +=  \
 lib/ADC/ADC.o \
 lib/CAN/CAN.o \
 lib/CAN/SPI.o \
+lib/DAC/DAC.o \
 lib/IR/IR.o \
 lib/JOY/JOY.o \
 lib/MCP2515/MCP2515.o \
 lib/MENU/MENU.o \
+lib/MOTOR/MOTOR.o \
 lib/OLED/OLED.o \
+lib/PID/PID.o \
 lib/PWM/PWM.o \
+lib/SOLEDNOID/SOLENOID.o \
 lib/SPI/SPI.o \
 lib/SRAM/SRAM.o \
 lib/TIMER/TIMER.o \
+lib/TWI/TWI_Master.o \
 lib/UART/UART.o \
 source/Node_2.o
 
@@ -93,15 +108,20 @@ OBJS_AS_ARGS +=  \
 lib/ADC/ADC.o \
 lib/CAN/CAN.o \
 lib/CAN/SPI.o \
+lib/DAC/DAC.o \
 lib/IR/IR.o \
 lib/JOY/JOY.o \
 lib/MCP2515/MCP2515.o \
 lib/MENU/MENU.o \
+lib/MOTOR/MOTOR.o \
 lib/OLED/OLED.o \
+lib/PID/PID.o \
 lib/PWM/PWM.o \
+lib/SOLEDNOID/SOLENOID.o \
 lib/SPI/SPI.o \
 lib/SRAM/SRAM.o \
 lib/TIMER/TIMER.o \
+lib/TWI/TWI_Master.o \
 lib/UART/UART.o \
 source/Node_2.o
 
@@ -109,15 +129,20 @@ C_DEPS +=  \
 lib/ADC/ADC.d \
 lib/CAN/CAN.d \
 lib/CAN/SPI.d \
+lib/DAC/DAC.d \
 lib/IR/IR.d \
 lib/JOY/JOY.d \
 lib/MCP2515/MCP2515.d \
 lib/MENU/MENU.d \
+lib/MOTOR/MOTOR.d \
 lib/OLED/OLED.d \
+lib/PID/PID.d \
 lib/PWM/PWM.d \
+lib/SOLEDNOID/SOLENOID.d \
 lib/SPI/SPI.d \
 lib/SRAM/SRAM.d \
 lib/TIMER/TIMER.d \
+lib/TWI/TWI_Master.d \
 lib/UART/UART.d \
 source/Node_2.d
 
@@ -125,15 +150,20 @@ C_DEPS_AS_ARGS +=  \
 lib/ADC/ADC.d \
 lib/CAN/CAN.d \
 lib/CAN/SPI.d \
+lib/DAC/DAC.d \
 lib/IR/IR.d \
 lib/JOY/JOY.d \
 lib/MCP2515/MCP2515.d \
 lib/MENU/MENU.d \
+lib/MOTOR/MOTOR.d \
 lib/OLED/OLED.d \
+lib/PID/PID.d \
 lib/PWM/PWM.d \
+lib/SOLEDNOID/SOLENOID.d \
 lib/SPI/SPI.d \
 lib/SRAM/SRAM.d \
 lib/TIMER/TIMER.d \
+lib/TWI/TWI_Master.d \
 lib/UART/UART.d \
 source/Node_2.d
 
@@ -180,6 +210,16 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+
+
+
+
+
+
+
+
+
 lib/ADC/%.o: ../lib/ADC/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
@@ -188,6 +228,13 @@ lib/ADC/%.o: ../lib/ADC/%.c
 	
 
 lib/CAN/%.o: ../lib/CAN/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/DAC/%.o: ../lib/DAC/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -222,6 +269,13 @@ lib/MENU/%.o: ../lib/MENU/%.c
 	@echo Finished building: $<
 	
 
+lib/MOTOR/%.o: ../lib/MOTOR/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 lib/OLED/%.o: ../lib/OLED/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
@@ -229,7 +283,21 @@ lib/OLED/%.o: ../lib/OLED/%.c
 	@echo Finished building: $<
 	
 
+lib/PID/%.o: ../lib/PID/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 lib/PWM/%.o: ../lib/PWM/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/SOLEDNOID/%.o: ../lib/SOLEDNOID/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -251,6 +319,13 @@ lib/SRAM/%.o: ../lib/SRAM/%.c
 	
 
 lib/TIMER/%.o: ../lib/TIMER/%.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 4.8.1
+	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+lib/TWI/%.o: ../lib/TWI/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

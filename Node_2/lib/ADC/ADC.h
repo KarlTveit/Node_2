@@ -23,7 +23,9 @@
 typedef enum{
 	joyY = 0x4,
 	joyX = 0x5,
-	IR = 3
+	IR = 0x3,
+	right_slider = 0x6,
+	left_slider = 0x7
 	}channel;
 
 
