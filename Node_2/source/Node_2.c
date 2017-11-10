@@ -67,7 +67,7 @@ int main(void) {
 	//CAN_send_message(&m);
 	
 	
-	
+	//MCP2515_init();
 	PWM_init();
 	DAC_init();
 	MOTOR_init();
@@ -86,7 +86,7 @@ int main(void) {
 		 
 		can_message_t msg;
 		CAN_recieve_data(&msg);
-		CAN_print_message(msg);
+		//CAN_print_message(msg);
 		
 		float dc = PWM_get_duty_cycle();
 		//printf("dc = %d\n", dc);

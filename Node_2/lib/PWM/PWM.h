@@ -14,7 +14,6 @@
 #define PWM_max 31.2-1.7
 
 
-
 void PWM_init(void);
 
 float PWM_get_duty_cycle(void);

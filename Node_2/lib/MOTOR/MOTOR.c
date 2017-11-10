@@ -92,7 +92,7 @@ uint8_t MOTOR_get_speed(void){
 	can_message_t *msg;
 	CAN_recieve_data(msg);
 	
-	int8_t pos = msg->data[0]-127;
+	int8_t pos = msg->data[2]-127;
 	uint8_t speed = (abs(pos)*0.7);
 	/*if (pos < 0) {
 		speed = -pos;
@@ -105,7 +105,7 @@ uint8_t MOTOR_get_direction(void) {
 	can_message_t *msg;
 	CAN_recieve_data(msg);	
 	
-	if (msg->data[0] > 127) {
+	if (msg->data[2] > 127) {
 		return RIGHT;
 	}
 	return LEFT;

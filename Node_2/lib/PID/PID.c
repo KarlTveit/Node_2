@@ -7,13 +7,14 @@
 #include "PID.h"
 
 
-int16_t rot_max = 8800;
-int16_t rot_min = 100;
+static int16_t rot_max = 8800;
+static int16_t rot_min = 100;
 
-double motor_mid = 0;
+//double motor_mid = 0;
 double Kp = 1;
 double Ki = 1;
 double Kd = 0.1;
+
 double integral = 0;
 int16_t error = 0;
 double dt = 0.016;
@@ -59,7 +60,7 @@ ISR(TIMER2_OVF_vect) {
 
 void PID_init(void){
 	
-	motor_mid = abs((rot_max+rot_min)/2);
+	uint8_t motor_mid = abs((rot_max+rot_min)/2);
 	
 	DAC_init();
 	
