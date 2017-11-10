@@ -60,12 +60,6 @@ ISR(TIMER2_OVF_vect) {
 
 void PID_init(void){
 	
-	uint8_t motor_mid = abs((rot_max+rot_min)/2);
-	
-	DAC_init();
-	
-/*
-	
 	MOTOR_write(10,LEFT);
 	_delay_ms(1000);
 	rot_min = MOTOR_read();
@@ -73,7 +67,14 @@ void PID_init(void){
 	MOTOR_write(10,RIGHT);
 	_delay_ms(1000);
 	rot_max = MOTOR_read();
-	*/
+	
+	uint8_t motor_mid = abs((rot_max+rot_min)/2);
+	
+	DAC_init();
+	
+	
+	
+	
 	
 	motor_mid = abs((rot_max+rot_min)/2);
 	

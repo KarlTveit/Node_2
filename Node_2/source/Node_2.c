@@ -35,6 +35,7 @@
 #include "../lib/DAC/DAC.h"
 #include "../lib/TWI/TWI_Master.h"
 #include "../lib/PID/PID.h"
+#include "../lib/SOLEDNOID/SOLENOID.h"
 uint8_t RECEIVED = 0;
 
 ISR(USART0_RXC_vect)
@@ -72,8 +73,14 @@ int main(void) {
 	DAC_init();
 	MOTOR_init();
 	IR_init();
+	SOLENOID_init();
 	//PID_init();
-
+	while(1){
+		SOLENOID_enable();
+		_delay_ms(1);
+		SOLENOID_disable();
+		_delay_ms(100);
+	}
 	
 	while(1){
 		
@@ -87,6 +94,8 @@ int main(void) {
 		can_message_t msg;
 		CAN_recieve_data(&msg);
 		//CAN_print_message(msg);
+		
+		
 		
 		float dc = PWM_get_duty_cycle();
 		//printf("dc = %d\n", dc);

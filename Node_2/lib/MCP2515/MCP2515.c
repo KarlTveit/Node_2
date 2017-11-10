@@ -18,6 +18,8 @@ uint8_t MCP2515_init() {
 	
 	MCP2515_reset();
 	_delay_ms(1);
+	
+	MCP2515_bit_modify(MCP_CANINTE, 0b00000001, 0b00000001);
 
 	//test
 	val = MCP2515_read(MCP_CANSTAT);
@@ -26,6 +28,8 @@ uint8_t MCP2515_init() {
 		printf("MCP2515 in NOT in configuration mode after reset!\n");
 		return 1;
 	}
+	
+	
 	
 	return 0;
 }
