@@ -5,6 +5,7 @@
  *  Author: karlmt
  */ 
 
+#include <stdlib.h>
 #include "JOY.h"
 
 //correction values
@@ -40,13 +41,6 @@ JOY_position_t JOY_getPosition(void) {
 	pos.X = (int)((ADC_read(joyX)*0.7874)) + corr_x - 100;
 	pos.Y = (int) ((ADC_read(joyY)*0.7874)) + corr_y - 100;
 	
-	/*can_message_t* message;
-	message->id = JOY_POS_ID;		// Jo lavere ID, desto høyere prioritering (lavfrekvente signaler burde ha høyere prioritering)
-	message->length = 2;
-	message->data[0] = pos.X;
-	message->data[1] = pos.Y;
-	CAN_send_message(message);*/
-	
 	return pos;
 }
 
@@ -74,7 +68,7 @@ JOY_direction_t JOY_getDirection(void) {
 	else if (pos.Y < 0 && abs(frac) < 1) {
 		return down;
 	}
-
+	return neutral;
 }
 
 void JOY_getDirectionString(void) {

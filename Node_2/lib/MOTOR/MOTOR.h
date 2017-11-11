@@ -17,7 +17,7 @@
 
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
-#define F_CPU 16000000
+
 #include <util/delay.h>
 
 #include <avr/io.h>
@@ -48,8 +48,8 @@ uint16_t MOTOR_read(void);
 void MOTOR_write(uint8_t speed, uint8_t direction);
 
 
-uint8_t MOTOR_get_speed(void);
-uint8_t MOTOR_get_direction(void);
+uint8_t MOTOR_get_speed(can_message_t msg);
+uint8_t MOTOR_get_direction(can_message_t msg);
 
 
 #endif /* MOTOR_H_ */

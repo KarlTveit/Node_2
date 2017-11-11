@@ -21,7 +21,9 @@ lib/PID/PID.d lib/PID/PID.o: ../lib/PID/PID.c ../lib/PID/PID.h \
  ../lib/PID/../MOTOR/../CAN/../MCP2515/MCP2515.h \
  ../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/SPI.h \
  ../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
- ../lib/PID/../MOTOR/../TWI/TWI_Master.h
+ ../lib/PID/../MOTOR/../TWI/TWI_Master.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h
 
 ../lib/PID/PID.h:
 
@@ -72,3 +74,7 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:
 
 ../lib/PID/../MOTOR/../TWI/TWI_Master.h:
+
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h:
+
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h:

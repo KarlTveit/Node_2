@@ -4,7 +4,7 @@
  * Created: 06.09.2017 16:28:18
  *  Author: karlmt
  */ 
-
+#include <stdio.h>
 #include "SRAM.h"
 #include <stdlib.h>
 #include <avr/io.h>

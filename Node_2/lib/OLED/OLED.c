@@ -103,7 +103,7 @@ void OLED_goto_column(uint8_t column){		//column = {0,127}
 }
 
 //workin fiiiine
-void OLED_clear_line(line) {
+void OLED_clear_line(uint8_t line) {
 	OLED_goto_line(line);
 	for (uint8_t i = 0; i<128; i++) {
 		*ext_oled_data = CLEAR;
@@ -111,7 +111,7 @@ void OLED_clear_line(line) {
 	}
 }
 
-void OLED_pos(uint8_t row/*, uint8_t column*/){
+uint8_t OLED_pos(uint8_t row/*, uint8_t column*/){
 	return current_line;
 }
 

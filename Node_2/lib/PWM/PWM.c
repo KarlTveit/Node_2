@@ -4,10 +4,10 @@
  * Created: 25.10.2017 10:07:05
  *  Author: Administrator
  */ 
-
+#include <stdio.h>
 #include "PWM.h"
 
-#include "../CAN/CAN.h"
+
 
 
 //#ifdef __AVR_ATmega162__
@@ -48,24 +48,25 @@ void PWM_init(void) {
 
 
 
-float PWM_get_duty_cycle(void) {
+float PWM_get_duty_cycle(can_message_t msg) {
 	
-	can_message_t msg;
 	
-	if(MCP2515_read(MCP_CANINTF) & 1){
-		CAN_recieve_data(&msg);
-		//CAN_print_message(msg);
+	//printf("MCP2515_read(MCP_CANINTF) & 1 = %d\n\n", MCP2515_read(MCP_CANINTF) & 1);
+	/*if(MCP2515_read(MCP_CANINTF) & 1){*/
+		printf("IN GET DC:\n");
+		CAN_print_message(msg);
+		printf("\n\n\n");
 		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);	
-	}
-	float x_pos = msg.data[0];
-	printf("x_pos = %d\n", x_pos);
+	/*}*/
+	double x_pos = msg.data[0];
+	printf("x_pos = %f\n", x_pos);
 	return (x_pos/255)*(PWM_max-PWM_min) + PWM_min;
 	
 }
 
 
 void PWM_set_duty_cycle(float val) {
-	
+
 	if (val >= PWM_max) {
 		OCR1A = PWM_max;
 	}

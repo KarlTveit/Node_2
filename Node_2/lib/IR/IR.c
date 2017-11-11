@@ -30,8 +30,8 @@ void IR_init(void){
 	
 }
 uint8_t IR_read(void){
-	uint8_t low;
-	uint16_t high;
+	//uint8_t low;
+	//uint16_t high;
 	ADCSRA |= (1<<ADSC);
 	
 	while (!IR_intflag) {};

@@ -5,6 +5,7 @@
  *  Author: karlmt
  */ 
 #include "DAC.h"
+#include "../TWI/TWI_Master.h"
 #define MAX520_ADDR 0b01011110
 
 void DAC_init(void){

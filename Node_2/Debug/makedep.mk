@@ -6,8 +6,6 @@ lib\ADC\ADC.c
 
 lib\CAN\CAN.c
 
-lib\CAN\SPI.c
-
 lib\DAC\DAC.c
 
 lib\IR\IR.c

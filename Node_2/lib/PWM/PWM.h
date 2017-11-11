@@ -13,11 +13,11 @@
 #define PWM_mid	23.4-1.7
 #define PWM_max 31.2-1.7
 
-
+#include "../CAN/CAN.h"
 
 void PWM_init(void);
 
-float PWM_get_duty_cycle(void);
+float PWM_get_duty_cycle(can_message_t msg);
 
 void PWM_set_duty_cycle(float val);
 
