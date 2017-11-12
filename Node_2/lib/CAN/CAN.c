@@ -8,22 +8,35 @@
 #include "CAN.h"
 
 void CAN_init(void){
-	
+	//MCP2515_reset();
 	MCP2515_init();
-	MCP2515_bit_modify(MCP_CANCTRL,0b11100000, MODE_NORMAL);
 	MCP2515_bit_modify(MCP_RXB0CTRL,0b01100100, 0b01100000);
+	MCP2515_bit_modify(MCP_CANCTRL,MODE_MASK, MODE_NORMAL);
+	MCP2515_bit_modify(MCP_CANINTE,0b00000001,0xff);
+	MCP2515_bit_modify(0x60,0b01100000,0xff);
 	
-	//MCP2515_bit_modify(MCP_CANINTE,0xff, 0xff);
 }
 
 
 void CAN_send_message(can_message_t *message){
-	if (!(MCP_TXB0CTRL & (MCP_RTS_TX0))) {
-		//placing message id into SID 0:7
+	
+	
+	
+	 
+	
+	if (!(MCP2515_read(MCP_TXB0CTRL) & 0b00001000)) {
+		
+		/*MCP_TXB0CTRL &= ~(1<<MCP_ABTF);
+		MCP_TXB0CTRL &= ~(1<<MCP_MLOA);
+		MCP_TXB0CTRL &= ~(1<<MCP_TXERR);*/
+		
+// 		MCP2515_bit_modify(MCP_TXB0CTRL, 0b00000011, 0b00000000 );
+// 		//placing message id into SID 0:7
+		//printf("Hello\n");
 		MCP2515_write(message->id>>3, MCP_TXB0SIDH); //SID 3:7
 		MCP2515_write(message->id<<5, MCP_TXB0SIDL); //SID 0:2
 		
-		MCP2515_write(message->length, MCP_TXB0DLC);
+		MCP2515_write((message->length), MCP_TXB0DLC);
 		
 		for (uint8_t i = 0; i < message->length; i++) {
 			MCP2515_write(message->data[i], MCP_TXB0D0+i);

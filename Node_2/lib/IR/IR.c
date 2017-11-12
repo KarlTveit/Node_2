@@ -34,11 +34,18 @@ uint8_t IR_read(void){
 	//uint16_t high;
 	ADCSRA |= (1<<ADSC);
 	
-	while (!IR_intflag) {};
+	if (IR_intflag) {
+		IR_intflag = false;
+		can_message_t node_2_msg;
+		node_2_msg.id = 70;
+		node_2_msg.length = 1;
+		node_2_msg.data[0] = 1;
+		CAN_send_message(&node_2_msg);
+		return ADC;
+	};
 		
-	IR_intflag = false;
-	
-	return ADC;
+		
+	return 0;
 	
 	}
 	

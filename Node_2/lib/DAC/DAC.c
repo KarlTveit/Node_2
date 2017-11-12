@@ -9,8 +9,8 @@
 #define MAX520_ADDR 0b01011110
 
 void DAC_init(void){
-	TWI_Master_Initialise();
 	sei();
+	TWI_Master_Initialise();
 }
 
 void DAC_write(uint8_t data){

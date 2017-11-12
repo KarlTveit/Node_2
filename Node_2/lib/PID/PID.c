@@ -7,8 +7,8 @@
 #include "PID.h"
 
 #include <stdlib.h>
-static int16_t rot_max = 8800;
-static int16_t rot_min = 100;
+static int16_t rot_max = 0;
+static int16_t rot_min = 0;
 
 //double motor_mid = 0;
 double Kp = 1;
@@ -60,16 +60,42 @@ ISR(TIMER2_OVF_vect) {
 
 void PID_init(void){
 	
-	MOTOR_write(10,LEFT);
-	_delay_ms(1000);
-	rot_min = MOTOR_read();
-	
-	MOTOR_write(10,RIGHT);
-	_delay_ms(1000);
+	MOTOR_write(127,LEFT);
+	_delay_ms(500);
+	MOTOR_write(0,LEFT);
 	rot_max = MOTOR_read();
+	_delay_ms(2000);
 	
-	uint8_t motor_mid = abs((rot_max+rot_min)/2);
 	
+	MOTOR_write(127,RIGHT);
+	_delay_ms(500);
+	MOTOR_write(0,RIGHT);
+	rot_min = MOTOR_read();
+	printf("MOTOR_read() = %d\n", MOTOR_read());
+	_delay_ms(2000);
+	
+	
+	MOTOR_write(127,LEFT);
+	_delay_ms(70);
+	MOTOR_write(0,LEFT);
+	
+/*
+	printf("rot_min = %d\n", rot_min);
+	printf("rot_max = %d\n", rot_max);
+	
+	printf("MOTOR_read() = %d\n", MOTOR_read());
+	printf("(rot_max+rot_min)/2 = %d\n", (rot_max+rot_min)/2);*/
+
+	while(MOTOR_read() < (rot_max+rot_min)/2) {
+		printf("(rot_max+rot_min)/2 = %d\n", (rot_max+rot_min)/2);
+		printf("MOTOR_read() = %d\n\n\n", MOTOR_read());
+		MOTOR_write(127,LEFT);
+	}
+	MOTOR_write(0,LEFT);
+	
+	//uint8_t motor_mid = abs((rot_max+rot_min)/2);
+	
+/*
 	DAC_init();
 	
 	
@@ -82,7 +108,7 @@ void PID_init(void){
 		MOTOR_write(70,LEFT);
 	}
 	
-	//MOTOR_write(0,right);
+	//MOTOR_write(0,right);*/
 	
 	cli();
 	

@@ -14,13 +14,13 @@ void SOLENOID_init(void){
 }
 
 
-void SOLENOID_enable(){
+void SOLENOID_disable(){
 	
 		PORTB |= (1 << PB4);
 		
 }
 
-void SOLENOID_disable(){
+void SOLENOID_enable(){
 	
 	PORTB &= ~(1 << PB4);
 }

@@ -32,9 +32,9 @@ source/Node_2.d source/Node_2.o: ../source/Node_2.c \
  ../source/../lib/OLED/OLED_COMMANDS.h ../source/../lib/MENU/MENU.h \
  ../source/../lib/SPI/SPI.h ../source/../lib/MCP2515/MCP2515.h \
  ../source/../lib/CAN/CAN.h ../source/../lib/IR/IR.h \
- ../source/../lib/DAC/DAC.h ../source/../lib/TWI/TWI_Master.h \
- ../source/../lib/PID/PID.h ../source/../lib/PID/../DAC/DAC.h \
- ../source/../lib/PID/../MOTOR/MOTOR.h \
+ ../source/../lib/IR/../CAN/CAN.h ../source/../lib/DAC/DAC.h \
+ ../source/../lib/TWI/TWI_Master.h ../source/../lib/PID/PID.h \
+ ../source/../lib/PID/../DAC/DAC.h ../source/../lib/PID/../MOTOR/MOTOR.h \
  ../source/../lib/PID/../MOTOR/../CAN/CAN.h \
  ../source/../lib/PID/../MOTOR/../TWI/TWI_Master.h \
  ../source/../lib/SOLEDNOID/SOLENOID.h
@@ -120,6 +120,8 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../source/../lib/CAN/CAN.h:
 
 ../source/../lib/IR/IR.h:
+
+../source/../lib/IR/../CAN/CAN.h:
 
 ../source/../lib/DAC/DAC.h:
 

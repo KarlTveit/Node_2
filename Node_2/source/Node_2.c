@@ -48,9 +48,6 @@ ISR(USART0_RX_vect)
 
 int main(void) {
 	
-	while(1){
-		printf("hello\n");
-	}
 	
 	//disable alle interrupts
 	cli();
@@ -79,30 +76,34 @@ int main(void) {
 	SOLENOID_init();
 	//PID_init();
 	
+	/*while(1) {
+		printf("IR_read() = %d", IR_read());
+	}*/
+	
+	/*while(1){
+		can_message_t node_2_msg;
+		node_2_msg.id = 70;
+		node_2_msg.length = 1;
+		node_2_msg.data[0] = 1;
+		CAN_send_message(&node_2_msg);
+	}*/
+	
+	PID_init();
 	/*
 	while(1){
-		can_message_t msg;
-		CAN_recieve_data(&msg);
-		CAN_print_message(msg);
-		printf("\n\n");
-		_delay_ms(2000);
-	}
-	*/
-	
-	
-	while(1){
+		
 		
 		
 		
 		//printf("ADC IR %d\n",IR_read());
-	/*can_message_t msg;
+	/ *can_message_t msg;
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
 		CAN_print_message(msg);
-		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
+		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);* /
 		 
-		/*can_message_t msg;
-		CAN_recieve_data(&msg);*/
+		/ *can_message_t msg;
+		CAN_recieve_data(&msg);* /
 		
 		can_message_t msg;
 		CAN_recieve_data(&msg);
@@ -115,10 +116,12 @@ int main(void) {
 		
 		printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
 		
-		if (msg.data[5] == 0) {
+		if (msg.data[3]) {
 			SOLENOID_enable();
-			_delay_ms(10);
+			
+			_delay_ms(100);
 			SOLENOID_disable();
+			//_delay_ms(1000);
 		}
 		
 		
@@ -127,6 +130,6 @@ int main(void) {
 		
 		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
 
-	}
+	}*/
 	
 }
