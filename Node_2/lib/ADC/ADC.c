@@ -11,9 +11,18 @@ void ADC_init(void){
 			|	(1<<ADPS2);
 	DDRF &= ~(1<<PF0);
 	ADMUX |= (1<< REFS0);
-	ADCSRA |= (1<<ADIE);
-	ADCSRA &= ~(1<<ADIF);
+	ADMUX &= ~(1 << REFS1);
 	
+	ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
+	ADCSRB &= ~(1 << MUX5);
+	
+	ADCSRA |= (1<<ADIE);
+	//ADCSRA &= ~(1<<ADIF);
+	
+	
+	
+	
+	ADMUX |= (1 << ADLAR);	//sets left adjust result
 }
 
 
@@ -24,7 +33,7 @@ uint8_t ADC_read(channel ch){
 	
 	while( (ADCSRA & (1<<ADSC)) ) {}
 		
-	return ADC;
+	return ADCH;
 }
 
 

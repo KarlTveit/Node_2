@@ -18,11 +18,17 @@
 
 #include "../DAC/DAC.h"
 #include "../MOTOR/MOTOR.h"
+#include "../ADC/ADC.h"
 
 #define F_CPU 16000000
 
 void PID_init(void);
-uint8_t PID_scale(int8_t motor_rot);
+uint8_t PID_scale(int8_t encoder_val);
+int8_t PID_control(can_message_t msg);
+
+/*
+uint8_t PID_get_rot_min(void)
+uint8_t PID_get_rot_max(void)*/
 
 
 #endif /* PID_H_ */

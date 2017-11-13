@@ -58,7 +58,6 @@ int main(void) {
 	//init_SRAM();
 	
 	
-	//printf("hello\n");
 	CAN_init();
 /*
 	can_message_t m;
@@ -73,13 +72,12 @@ int main(void) {
 	DAC_init();
 	MOTOR_init();
 	IR_init();
-	SOLENOID_init();
+	SOLENOID_init();;
 	//PID_init();
-	
 	/*while(1) {
-		printf("IR_read() = %d", IR_read());
-	}*/
-	
+		PID_init();
+	}
+	*/
 	/*while(1){
 		can_message_t node_2_msg;
 		node_2_msg.id = 70;
@@ -88,48 +86,58 @@ int main(void) {
 		CAN_send_message(&node_2_msg);
 	}*/
 	
-	PID_init();
-	/*
-	while(1){
+	
+		while(1){
+		_delay_ms(100);
 		
-		
-		
+		//printf( "\n\nSolenoid pin = %d\n\n", PINB & (1 << PB4));
 		
 		//printf("ADC IR %d\n",IR_read());
-	/ *can_message_t msg;
+	/*can_message_t msg;
 	if(MCP2515_read(MCP_CANINTF) & 1){
 		CAN_recieve_data(&msg);
 		CAN_print_message(msg);
-		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);* /
+		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
 		 
-		/ *can_message_t msg;
-		CAN_recieve_data(&msg);* /
+		/*can_message_t msg;
+		CAN_recieve_data(&msg);*/
 		
 		can_message_t msg;
 		CAN_recieve_data(&msg);
 		//printf("IN MAIN:\n");
-		CAN_print_message(msg);
+		//CAN_print_message(msg);
 		
-		float dc = PWM_get_duty_cycle(msg);
+		
+		
+		if (msg.id == 100) {
+			//printf("msg.data[0] = %d\n\n", msg.data[0]);
+			float dc = PWM_get_duty_cycle(msg);
+			PWM_set_duty_cycle(dc);	
+		}
+		//float dc = PWM_get_duty_cycle(msg);
 		//printf("dc = %d\n", dc);
-		PWM_set_duty_cycle(dc);	
 		
-		printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
 		
-		if (msg.data[3]) {
-			SOLENOID_enable();
+		//printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
+		
+		if (msg.id == 100 && msg.data[3]) {
 			
-			_delay_ms(100);
+			SOLENOID_enable();
+			//printf("SOLENOID_enabled\n");
+			_delay_ms(50);
 			SOLENOID_disable();
+
 			//_delay_ms(1000);
 		}
+		printf("msg data 2 = %d\n", msg.data[2]);
+		uint8_t target_pos = msg.data[2];
+		//MOTOR_write_pos(target_pos - PID_control(msg));
 		
-		
-		MOTOR_write(MOTOR_get_speed(msg), MOTOR_get_direction(msg));
-		
+		MOTOR_write_speed(MOTOR_get_speed(msg),MOTOR_get_direction(msg));
 		
 		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
+		
 
-	}*/
+	}
 	
 }

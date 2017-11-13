@@ -45,11 +45,13 @@ void MOTOR_init(void);
 
 uint16_t MOTOR_read(void);
 
-void MOTOR_write(uint8_t speed, uint8_t direction);
+void MOTOR_write_speed(uint8_t speed, uint8_t direction);
+void MOTOR_write_pos(uint8_t target_pos);
 
 
 uint8_t MOTOR_get_speed(can_message_t msg);
 uint8_t MOTOR_get_direction(can_message_t msg);
+//uint8_t MOTOR_scale(int8_t encoder_val);
 
 
 #endif /* MOTOR_H_ */

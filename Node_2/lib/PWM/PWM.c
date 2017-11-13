@@ -52,14 +52,13 @@ float PWM_get_duty_cycle(can_message_t msg) {
 	
 	
 	//printf("MCP2515_read(MCP_CANINTF) & 1 = %d\n\n", MCP2515_read(MCP_CANINTF) & 1);
-	/*if(MCP2515_read(MCP_CANINTF) & 1){*/
-		printf("IN GET DC:\n");
-		CAN_print_message(msg);
+	//if(MCP2515_read(MCP_CANINTF) & 1){		printf("IN GET DC:\n");
+		//CAN_print_message(msg);
 		printf("\n\n\n");
 		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);	
-	/*}*/
+	//}
 	double x_pos = msg.data[0];
-	printf("x_pos = %f\n", x_pos);
+	
 	return (x_pos/255)*(PWM_max-PWM_min) + PWM_min;
 	
 }

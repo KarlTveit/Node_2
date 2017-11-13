@@ -11,7 +11,11 @@ lib/IR/IR.d lib/IR/IR.o: ../lib/IR/IR.c ../lib/IR/IR.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../lib/IR/../CAN/CAN.h ../lib/IR/../CAN/../MCP2515/MCP2515.h \
+ ../lib/IR/../CAN/CAN.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
+ ../lib/IR/../CAN/../MCP2515/MCP2515.h \
  ../lib/IR/../CAN/../MCP2515/../SPI/SPI.h \
  ../lib/IR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
  ../lib/IR/../ADC/ADC.h \
@@ -20,9 +24,6 @@ lib/IR/IR.d lib/IR/IR.o: ../lib/IR/IR.c ../lib/IR/IR.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
  ../lib/IR/../ADC/../UART/UART.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdbool.h
 
@@ -54,6 +55,12 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 ../lib/IR/../CAN/CAN.h:
 
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h:
+
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
+
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h:
+
 ../lib/IR/../CAN/../MCP2515/MCP2515.h:
 
 ../lib/IR/../CAN/../MCP2515/../SPI/SPI.h:
@@ -71,12 +78,6 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h:
-
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h:
-
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
-
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h:
 
 ../lib/IR/../ADC/../UART/UART.h:
 

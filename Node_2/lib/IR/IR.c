@@ -21,20 +21,28 @@ void IR_init(void){
 			|	(1<<ADPS2);
 	DDRF &= ~(1<<PF0);
 	ADMUX |= (1<< REFS0);
+	ADMUX &= ~(1 << REFS1);
+	
+	ADMUX &= ~(1 << MUX4) & ~(1 << MUX3) & ~(1 << MUX2) & ~(1 << MUX1) & ~(1 << MUX0);
+	ADCSRB &= ~(1 << MUX5);
 	
 	sei();
 	
 	ADCSRA |= (1<<ADIE);
 	ADCSRA &= ~(1<<ADIF);
 	
-	
+	ADMUX |= (1 << ADLAR);
 }
 uint8_t IR_read(void){
 	//uint8_t low;
 	//uint16_t high;
-	ADCSRA |= (1<<ADSC);
+	ADCSRA |= (1<<ADSC);	//Start conversion
 	
-	if (IR_intflag) {
+	while (ADCSRA & (1<<ADSC)) {};
+	
+	return ADCH;
+	
+	/*if (IR_intflag) {
 		IR_intflag = false;
 		can_message_t node_2_msg;
 		node_2_msg.id = 70;
@@ -43,10 +51,9 @@ uint8_t IR_read(void){
 		CAN_send_message(&node_2_msg);
 		return ADC;
 	};
+		*/
 		
-		
-	return 0;
-	
+
 	}
 	
 ISR(ADC_vect){
