@@ -34,59 +34,61 @@
 #include "../lib/DAC/DAC.h"
 #include "../lib/TWI/TWI_Master.h"
 #include "../lib/PID/PID.h"
+#include "../lib/TIMER/TIMER.h"
 #include "../lib/SOLEDNOID/SOLENOID.h"
 #include "../lib/CAN_DEFINES/CAN_DEFINES.h"
 uint8_t RECEIVED = 0;
 
 
-
-
-ISR(USART0_RX_vect)
+ISR(BADISR_vect)
 {
-	RECEIVED = 1;
-	
-	unsigned char temp = UDR0;
-	UART_Transmit(temp); // for å teste at det funker
+	printf("Trist\n");
 }
+
+//
+//ISR(USART0_RX_vect)
+//{
+	//printf("uart interrupt\n");
+	//RECEIVED = 1;
+	//
+	//unsigned char temp = UDR0;
+	//UART_Transmit(temp); // for å teste at det funker
+//}
 
 
 int main(void) {
 	
 	
-	//disable alle interrupts
-	cli();
+	
+	cli();	//disable alle interrupts
 	
 	DDRA = 0xFF;
 	UART_Init(UBRR);
 	fdevopen(&UART_Transmit, &UART_Recieve);
-	//init_SRAM();
-	
+
 	
 	CAN_init();
 	PWM_init();
 	DAC_init();
+	
+	//Enable global interrupt
+	sei();
+	
+	
 	MOTOR_init();
 	IR_init();
 	SOLENOID_init();
 	TIMER_init();
-	//PID_init();
-	/*while(1) {
-		PID_init();
-	}*/
 	
 	
-	/*while (1)
-	{
-		TIMER_start();
-		_delay_ms(4000);
-		TIMER_stop();
-		printf("time = %d\n\n", TIMER_get_time());
-	}*/
-	
+
 	
 	can_message_t gameover_msg;
 	gameover_msg.id = GAMEOVER_DATA_ID;
 	gameover_msg.length = 1;
+	gameover_msg.data[0] = FALSE;
+	
+	uint8_t count = 0;
 	
 /*
 	while(1){
@@ -103,74 +105,83 @@ int main(void) {
 
 	}
 	*/
-	
+
+/*
+while (1)
+{
+	printf("IR_read() = %d\n\n",IR_read());
+}*/
+	//SOLENOID_disable();
 		while(1){
-		_delay_ms(100);
-		
-		//printf( "\n\nSolenoid pin = %d\n\n", PINB & (1 << PB4));
+		//_delay_ms(100);
 		
 		//printf("ADC IR %d\n",IR_read());
-	/*can_message_t msg;
-	if(MCP2515_read(MCP_CANINTF) & 1){
-		CAN_recieve_data(&msg);
-		CAN_print_message(msg);
-		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
-
-		can_message_t msg;
-		CAN_recieve_data(&msg);
-		//_delay_ms(100);
-		//printf("IN MAIN:\n");
-		CAN_print_message(msg);
+	
 		
-		while (msg.id == GAME_ID /*&& msg.data[GAME_ENABLE]*/) {
-			CAN_recieve_data(&msg);
-			//if (msg.id == 100) {
-				printf("msg.id == GAME_ID && msg.data[GAME_ENABLE]");
-				CAN_print_message(msg);
-				float dc = PWM_get_duty_cycle(msg);
-				PWM_set_duty_cycle(dc);
-			//}
-			//float dc = PWM_get_duty_cycle(msg);
-			//printf("dc = %d\n", dc);
-			
-			//printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
-			
-		if (/*msg.id == GAME_ID && */msg.data[SOLENOID_ENABLE]) {
-				
-				SOLENOID_enable();
-				//printf("SOLENOID_enabled\n");
-				_delay_ms(50);
-				SOLENOID_disable();
+		can_message_t msg; 
+		msg.id = 0;
+		msg.length = 1;
+		msg.data[0] = 0;
 
-				//_delay_ms(1000);
-			}
-			//printf("msg data 2 = %d\n", msg.data[2]);
+		//msg.data[GAME_ENABLE] = 0;	//--> clearing bit in order to recognize new message
+		
+		CAN_recieve_data(&msg);
+		_delay_ms(10);
+		
+		
+		//printf("IN MAIN:\n");
+		//if (msg.id == 100 && msg.length == 7){	
+			CAN_print_message(msg);
+		//}
+		
+		if (msg.id == GAME_ID /*&& msg.data[GAME_ENABLE] && msg.length == 7*/) {
+
+			float dc = PWM_get_duty_cycle(msg);
+			PWM_set_duty_cycle(dc);
+		
+			//printf("dc = %d\n", dc);
+		
+			
+		
+		
+		
+			
+		if (/*msg.id == GAME_ID &&*/ msg.data[SOLENOID_ENABLE]) {
+				
+			SOLENOID_enable();
+			printf("SOLENOID_enabled\n");
+			_delay_ms(300);
+			SOLENOID_disable();
+
+			//_delay_ms(1000);
+		}
+		
 			uint8_t target_pos = msg.data[MOTOR_REF];
 			//MOTOR_write_pos(target_pos - PID_control(msg));
 			
 			MOTOR_write_speed(MOTOR_get_speed(msg),MOTOR_get_direction(msg));
+			//printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
 			
-			
-		//}
+	
 		
 		
 		
-	/*	can_message_t gameover_msg;
-		gameover_msg.id = GAMEOVER_DATA_ID;
-		gameover_msg.length = 1;
 		
-		if (*){
+		
+		/*if (IR_read() < 15) {
 			printf("Sending gameover message \n\n");
 			gameover_msg.data[TIMER_VAL] = TIMER_get_time();
 			
 			CAN_send_message(&gameover_msg);
+			_delay_ms(1);
 			CAN_print_message(gameover_msg); 
 
 		}*/
 		
-	}
+	
 		
 		
 		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
+	}
 	}
 }

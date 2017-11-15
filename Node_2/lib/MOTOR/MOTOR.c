@@ -4,10 +4,11 @@
  * Created: 08.11.2017 10:37:44
  *  Author: karlmt
  */ 
-
+#include <stdio.h>
 #include <stdlib.h>
 #include "MOTOR.h"
 #include "../DAC/DAC.h"
+#include "../PID/PID.h"
 /*
 max = -8284
 min = */

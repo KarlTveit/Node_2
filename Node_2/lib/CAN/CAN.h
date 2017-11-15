@@ -10,11 +10,12 @@
 #define CAN_H_
 
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include "../MCP2515/MCP2515.h"
 #include <avr/io.h>
 //#include "../OLED/fonts.h"
 typedef struct {
-	unsigned int id;
+	uint16_t id;
 	uint8_t length;
 	uint8_t data[8];
 }can_message_t;

@@ -5,16 +5,41 @@
 *  Author: tonjaj
 */
 #include <stdio.h>
+#include <avr/interrupt.h>
 #include "CAN.h"
+
+
+uint8_t can_receive_flag = 0;
+
+ISR(INT7_vect) {
+	
+	can_receive_flag = 1;
+		
+};
+	
+	
+	
 
 void CAN_init(void){
 	//MCP2515_reset();
 	MCP2515_init();
 	MCP2515_bit_modify(MCP_RXB0CTRL,0b01100100, 0b01100000);
 	MCP2515_bit_modify(MCP_CANCTRL,MODE_MASK, MODE_NORMAL);
+	
+	
+	
 	MCP2515_bit_modify(MCP_CANINTE,0b00000001,0xff);
 	MCP2515_bit_modify(0x60,0b01100000,0xff);
 	
+	//Low level
+	EICRB &= ~(1 << ISC71);
+	EICRB &= ~(1 << ISC70);
+	
+	//Enable external interrupt on pin 7
+	EIMSK |= (1 << INT7);
+	
+	//Enable global interrupt
+	//sei();
 }
 
 
@@ -62,16 +87,19 @@ void CAN_transmit_complete(){
 void CAN_recieve_data(can_message_t *message){
 	//memset(&message, 0, sizeof(can_message_t));
 	
+	
 	if(MCP2515_read(MCP_CANINTF) & 1) {
 		//printf("Jeg er i datarecieve__");
 		_delay_ms(50);
-		message->id = 0xff & (MCP2515_read(MCP_RXB0SIDH)<<3 | MCP2515_read(MCP_RXB0SIDL)>>5);
+		message->id = 0x7ff & (MCP2515_read(MCP_RXB0SIDH)<<3 | MCP2515_read(MCP_RXB0SIDL)>>5);
 		message->length = MCP2515_read(MCP_RXB0DLC) & 0b00001111;						//DLC3:0 in TXB0DLC-register
 		
 		for (uint8_t i = 0; i < message->length; i++) {
 			message->data[i] = MCP2515_read(MCP_RXB0D0+i);
 			//printf("Msg i = %d = %d\n", i, message->data[i]);
 		}
+		
+		//CAN_print_message(*message);
 		//printf("\tbefore modify %2x\n",MCP2515_read(MCP_CANINTF));
 		MCP2515_bit_modify(MCP_CANINTF, 0b00000001, 0b00000000);
 		//MCP2515_write(MCP_CANINTF,MCP2515_read(MCP_CANINTF) & 0xFE);
@@ -82,7 +110,8 @@ void CAN_recieve_data(can_message_t *message){
 	
 	
 	//MCP_CANINTF &= (~(0b00000001));
-
+	
+	can_recieve_flag = FALSE;
 	
 	
 }

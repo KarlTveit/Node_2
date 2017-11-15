@@ -15,6 +15,8 @@ ISR(TIMER4_COMPA_vect) {
 	_delay_ms(1);
 	/*printf("Interrupt vector func\n\n");*/
 } 
+
+
 /*
 ISR(TIMER4_OVF_vect){
 	stopwatch = stopwatch + 1;
@@ -69,6 +71,6 @@ void TIMER_stop() {
 
 
 
-void TIMER_get_time() {
+uint16_t TIMER_get_time() {
 	return stopwatch;
 }

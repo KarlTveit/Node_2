@@ -18,7 +18,7 @@ ISR(TIMER4_COMPA_vect);
 void TIMER_init();
 void TIMER_start();
 void TIMER_stop();
-void TIMER_get_time();
+uint16_t TIMER_get_time();
 
 
 
