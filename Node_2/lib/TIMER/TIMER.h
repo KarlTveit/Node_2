@@ -12,12 +12,13 @@
 #include <avr/interrupt.h> 
 #include <util/delay.h>
 
-ISR(TIMER1_COMPA_vect);
+ISR(TIMER4_COMPA_vect);
 
 
 void TIMER_init();
 void TIMER_start();
 void TIMER_stop();
+void TIMER_get_time();
 
 
 

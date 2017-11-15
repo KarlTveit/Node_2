@@ -134,6 +134,12 @@
     <Compile Include="lib\CAN\CAN.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\CAN_DEFINES\CAN_DEFINES.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\CAN_DEFINES\CAN_DEFINES.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\DAC\DAC.c">
       <SubType>compile</SubType>
     </Compile>
@@ -244,6 +250,7 @@
     <Folder Include="lib\MENU\" />
     <Folder Include="lib\IR" />
     <Folder Include="lib\MOTOR" />
+    <Folder Include="lib\CAN_DEFINES" />
     <Folder Include="lib\SOLEDNOID" />
     <Folder Include="lib\PID" />
     <Folder Include="lib\TIMER" />

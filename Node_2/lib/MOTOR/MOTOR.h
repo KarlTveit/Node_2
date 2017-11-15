@@ -23,6 +23,7 @@
 #include <avr/io.h>
 #include "../CAN/CAN.h"
 #include "../TWI/TWI_Master.h"
+#include "../CAN_DEFINES/CAN_DEFINES.h"
 //Set EN on MJ1
 //Set DIR on MJ1
 //PROVIDE Analog value on DA1 on MJEX from 0V-5V

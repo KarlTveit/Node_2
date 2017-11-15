@@ -35,7 +35,11 @@
 #include "../lib/TWI/TWI_Master.h"
 #include "../lib/PID/PID.h"
 #include "../lib/SOLEDNOID/SOLENOID.h"
+#include "../lib/CAN_DEFINES/CAN_DEFINES.h"
 uint8_t RECEIVED = 0;
+
+
+
 
 ISR(USART0_RX_vect)
 {
@@ -59,33 +63,46 @@ int main(void) {
 	
 	
 	CAN_init();
-/*
-	can_message_t m;
-	m.id = 3;
-	m.length = 1;
-	m.data[0] = (uint8_t) 'H';*/
-	//CAN_send_message(&m);
-	
-	
-	//MCP2515_init();
 	PWM_init();
 	DAC_init();
 	MOTOR_init();
 	IR_init();
-	SOLENOID_init();;
+	SOLENOID_init();
+	TIMER_init();
 	//PID_init();
 	/*while(1) {
 		PID_init();
-	}
-	*/
-	/*while(1){
-		can_message_t node_2_msg;
-		node_2_msg.id = 70;
-		node_2_msg.length = 1;
-		node_2_msg.data[0] = 1;
-		CAN_send_message(&node_2_msg);
 	}*/
 	
+	
+	/*while (1)
+	{
+		TIMER_start();
+		_delay_ms(4000);
+		TIMER_stop();
+		printf("time = %d\n\n", TIMER_get_time());
+	}*/
+	
+	
+	can_message_t gameover_msg;
+	gameover_msg.id = GAMEOVER_DATA_ID;
+	gameover_msg.length = 1;
+	
+/*
+	while(1){
+		TIMER_start();
+		_delay_ms(3000);
+		TIMER_stop();
+		printf("time = %d\n\n", TIMER_get_time());
+		
+		gameover_msg.data[TIMER_VAL] = TIMER_get_time();
+		
+		//CAN_send_message(&gameover_msg);
+		CAN_print_message(gameover_msg);
+		printf("\n\n");
+
+	}
+	*/
 	
 		while(1){
 		_delay_ms(100);
@@ -98,46 +115,62 @@ int main(void) {
 		CAN_recieve_data(&msg);
 		CAN_print_message(msg);
 		MCP2515_bit_modify(MCP_CANINTF,0x1,0x1);*/
-		 
-		/*can_message_t msg;
-		CAN_recieve_data(&msg);*/
-		
+
 		can_message_t msg;
 		CAN_recieve_data(&msg);
+		//_delay_ms(100);
 		//printf("IN MAIN:\n");
-		//CAN_print_message(msg);
+		CAN_print_message(msg);
 		
-		
-		
-		if (msg.id == 100) {
-			//printf("msg.data[0] = %d\n\n", msg.data[0]);
-			float dc = PWM_get_duty_cycle(msg);
-			PWM_set_duty_cycle(dc);	
-		}
-		//float dc = PWM_get_duty_cycle(msg);
-		//printf("dc = %d\n", dc);
-		
-		
-		//printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
-		
-		if (msg.id == 100 && msg.data[3]) {
+		while (msg.id == GAME_ID /*&& msg.data[GAME_ENABLE]*/) {
+			CAN_recieve_data(&msg);
+			//if (msg.id == 100) {
+				printf("msg.id == GAME_ID && msg.data[GAME_ENABLE]");
+				CAN_print_message(msg);
+				float dc = PWM_get_duty_cycle(msg);
+				PWM_set_duty_cycle(dc);
+			//}
+			//float dc = PWM_get_duty_cycle(msg);
+			//printf("dc = %d\n", dc);
 			
-			SOLENOID_enable();
-			//printf("SOLENOID_enabled\n");
-			_delay_ms(50);
-			SOLENOID_disable();
+			//printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
+			
+		if (/*msg.id == GAME_ID && */msg.data[SOLENOID_ENABLE]) {
+				
+				SOLENOID_enable();
+				//printf("SOLENOID_enabled\n");
+				_delay_ms(50);
+				SOLENOID_disable();
 
-			//_delay_ms(1000);
-		}
-		printf("msg data 2 = %d\n", msg.data[2]);
-		uint8_t target_pos = msg.data[2];
-		//MOTOR_write_pos(target_pos - PID_control(msg));
+				//_delay_ms(1000);
+			}
+			//printf("msg data 2 = %d\n", msg.data[2]);
+			uint8_t target_pos = msg.data[MOTOR_REF];
+			//MOTOR_write_pos(target_pos - PID_control(msg));
+			
+			MOTOR_write_speed(MOTOR_get_speed(msg),MOTOR_get_direction(msg));
+			
+			
+		//}
 		
-		MOTOR_write_speed(MOTOR_get_speed(msg),MOTOR_get_direction(msg));
+		
+		
+	/*	can_message_t gameover_msg;
+		gameover_msg.id = GAMEOVER_DATA_ID;
+		gameover_msg.length = 1;
+		
+		if (*){
+			printf("Sending gameover message \n\n");
+			gameover_msg.data[TIMER_VAL] = TIMER_get_time();
+			
+			CAN_send_message(&gameover_msg);
+			CAN_print_message(gameover_msg); 
+
+		}*/
+		
+	}
+		
 		
 		//MCP_CANINTF = MCP_CANINTF | 0b00000001;
-		
-
 	}
-	
 }

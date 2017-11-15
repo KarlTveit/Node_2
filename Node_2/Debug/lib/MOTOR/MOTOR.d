@@ -22,7 +22,8 @@ lib/MOTOR/MOTOR.d lib/MOTOR/MOTOR.o: ../lib/MOTOR/MOTOR.c \
  ../lib/MOTOR/../CAN/CAN.h ../lib/MOTOR/../CAN/../MCP2515/MCP2515.h \
  ../lib/MOTOR/../CAN/../MCP2515/../SPI/SPI.h \
  ../lib/MOTOR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
- ../lib/MOTOR/../TWI/TWI_Master.h ../lib/MOTOR/../DAC/DAC.h
+ ../lib/MOTOR/../TWI/TWI_Master.h \
+ ../lib/MOTOR/../CAN_DEFINES/CAN_DEFINES.h ../lib/MOTOR/../DAC/DAC.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h:
 
@@ -73,5 +74,7 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../lib/MOTOR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:
 
 ../lib/MOTOR/../TWI/TWI_Master.h:
+
+../lib/MOTOR/../CAN_DEFINES/CAN_DEFINES.h:
 
 ../lib/MOTOR/../DAC/DAC.h:

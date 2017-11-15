@@ -100,7 +100,7 @@ uint8_t MOTOR_get_speed(can_message_t msg){
 	/*can_message_t msg;
 	CAN_recieve_data(&msg);*/
 	
-	int8_t pos = msg.data[2]-127;
+	int8_t pos = msg.data[MOTOR_REF]-127;
 	uint8_t speed = (abs(pos)) /*+ PID_control()*/;
 	/*if (pos < 0) {
 		speed = -pos;
@@ -116,7 +116,7 @@ uint8_t MOTOR_get_direction(can_message_t msg) {
 	can_message_t msg;
 	CAN_recieve_data(&msg);	*/
 	
-	if (msg.data[2] > 127) {
+	if (msg.data[MOTOR_REF] > 127) {
 		return RIGHT;
 	}
 	return LEFT;
