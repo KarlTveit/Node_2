@@ -7,8 +7,8 @@
 #include "PID.h"
 
 #include <stdlib.h>
-static int16_t rot_max = 0;
-static int16_t rot_min = 0;
+volatile int16_t rot_max = 0;
+volatile int16_t rot_min = 0;
 
 //double motor_mid = 0;
 double Kp = 1;
@@ -56,8 +56,8 @@ ISR(TIMER2_OVF_vect) {
 	//dt = TIMER_get_time(); //OBS må være en annen timer enn highscore
 	//int16_t setpoint = (msg.data[2]);
 	//int8_t encoder_val = PID_scale(MOTOR_read());
-	int16_t encoder_val = PID_scale(MOTOR_read()); //value betweern 0 - 255
-	
+	int16_t encoder_val = PID_scale(MOTOR_read()); //value between 0 - 255
+	printf("scala encoder val = %d\n", PID_scale(MOTOR_read()));
 	int16_t current_error = ref - encoder_val;
 	
 	error_integrated = current_error*dt + error_integrated;
@@ -70,7 +70,7 @@ ISR(TIMER2_OVF_vect) {
 	int16_t speed = 0;
 	prev_error= current_error;
 	
-	if (control_output < 0) {
+	/*if (control_output < 0) {
 		dir = LEFT;
 		if (control_output > -150){
 			speed = -control_output;
@@ -88,7 +88,7 @@ ISR(TIMER2_OVF_vect) {
 			speed = 150;
 		}
 	}
-	MOTOR_write_speed(speed,dir);
+	//MOTOR_write_speed(speed,dir);*/
 	
 	printf("current_error = %d\n control output = %d\n error intgrated = %d\n",current_error,control_output,error_integrated);
 	MOTOR_write_pos(control_output);
@@ -99,22 +99,22 @@ ISR(TIMER2_OVF_vect) {
 
 
 void PID_init(void){
-	cli();
-	DAC_init();
+	//cli();
+	//DAC_init();
 	printf("i pid init");
 	
 	MOTOR_write_speed(127,RIGHT);
 	_delay_ms(600);
 	MOTOR_write_speed(0,RIGHT);
 	printf("rot_min before = %d\n", MOTOR_read());
-	//while (MOTOR_read()!= 0){
+	while (MOTOR_read()!= 0){
 		_delay_ms(20);
 		printf("IN THE SHIT");
 		PORTH &= ~(1<<_RST);
 		_delay_ms(20);
 		PORTH |=  (1<<_RST);
 		//void MOTOR_encoder_reset(void); //resetting the encoder so that rot_min = 0
-	//}
+	}
 	rot_min = MOTOR_read();
 	printf("rot_min = = %d\n", MOTOR_read());
 	_delay_ms(1000);
@@ -204,8 +204,8 @@ void PID_update_ref(int16_t pos){
 	ref_position = pos;
 }
 
-uint8_t PID_scale(int8_t encoder_val) {
-	double val = (encoder_val *(255/rot_max));
+uint16_t PID_scale(int16_t encoder_val) {
+	double val = (encoder_val *(255.0/rot_max));
 	return val;
 }
 
@@ -214,6 +214,7 @@ int16_t PID_control(can_message_t msg) {
 	 dt = TIMER_get_time(); //OBS må være en annen timer enn highscore
 	int16_t setpoint = (msg.data[2]);
 	//int8_t encoder_val = PID_scale(MOTOR_read());
+	printf("setpoint = %d\n", setpoint);
 	int16_t encoder_val = PID_scale(MOTOR_read()); //value betweern 0 - 255
 	
 	int16_t current_error = setpoint - encoder_val;

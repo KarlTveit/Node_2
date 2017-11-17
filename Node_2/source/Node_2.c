@@ -41,10 +41,11 @@
 uint8_t RECEIVED = 0;
 
 
+/*
 ISR(BADISR_vect)
 {
 	printf("Trist\n");
-}
+}*/
 
 //
 //ISR(USART0_RX_vect)
@@ -61,7 +62,7 @@ int main(void) {
 	
 	
 	
-	cli();	//disable alle interrupts
+	//cli();	//disable alle interrupts
 	
 	DDRA = 0xFF;
 	UART_Init(UBRR);

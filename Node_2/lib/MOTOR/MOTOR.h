@@ -47,7 +47,7 @@ void MOTOR_init(void);
 uint16_t MOTOR_read(void);
 void MOTOR_encoder_reset(void);
 void MOTOR_write_speed(uint8_t speed, uint8_t direction);
-void MOTOR_write_pos(uint16_t target_pos);
+void MOTOR_write_pos(int16_t target_pos);
 
 
 uint8_t MOTOR_get_speed(can_message_t msg);
