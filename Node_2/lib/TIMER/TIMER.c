@@ -30,7 +30,7 @@ ISR(TIMER4_OVF_vect){
 void TIMER_init() {
 	
 	TCCR4B |= (1 << WGM42); //CTC mode
-	
+	sei();
 	/*Want to count each second:
 	Clock frequency = 16 000 000 and prescaler = 1024 ---> 16000000/1024 = 15625 ticks per sec*/
 	

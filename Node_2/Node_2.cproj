@@ -146,6 +146,12 @@
     <Compile Include="lib\DAC\DAC.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="lib\HC05\HC05.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="lib\HC05\HC05.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="lib\IR\IR.c">
       <SubType>compile</SubType>
     </Compile>
@@ -251,6 +257,7 @@
     <Folder Include="lib\IR" />
     <Folder Include="lib\MOTOR" />
     <Folder Include="lib\CAN_DEFINES" />
+    <Folder Include="lib\HC05" />
     <Folder Include="lib\SOLEDNOID" />
     <Folder Include="lib\PID" />
     <Folder Include="lib\TIMER" />

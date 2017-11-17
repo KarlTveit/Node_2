@@ -10,6 +10,8 @@ lib\CAN_DEFINES\CAN_DEFINES.c
 
 lib\DAC\DAC.c
 
+lib\HC05\HC05.c
+
 lib\IR\IR.c
 
 lib\JOY\JOY.c

@@ -40,7 +40,12 @@ source/Node_2.d source/Node_2.o: ../source/Node_2.c \
  ../source/../lib/PID/../MOTOR/../CAN_DEFINES/CAN_DEFINES.h \
  ../source/../lib/PID/../ADC/ADC.h ../source/../lib/TIMER/TIMER.h \
  ../source/../lib/SOLEDNOID/SOLENOID.h \
- ../source/../lib/CAN_DEFINES/CAN_DEFINES.h
+ ../source/../lib/CAN_DEFINES/CAN_DEFINES.h ../source/../lib/HC05/HC05.h \
+ ../source/../lib/HC05/../CAN/CAN.h \
+ ../source/../lib/HC05/../MOTOR/MOTOR.h \
+ ../source/../lib/HC05/../SOLEDNOID/SOLENOID.h \
+ ../source/../lib/HC05/../PWM/PWM.h \
+ ../source/../lib/HC05/../MCP2515/MCP2515.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -149,3 +154,15 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../source/../lib/SOLEDNOID/SOLENOID.h:
 
 ../source/../lib/CAN_DEFINES/CAN_DEFINES.h:
+
+../source/../lib/HC05/HC05.h:
+
+../source/../lib/HC05/../CAN/CAN.h:
+
+../source/../lib/HC05/../MOTOR/MOTOR.h:
+
+../source/../lib/HC05/../SOLEDNOID/SOLENOID.h:
+
+../source/../lib/HC05/../PWM/PWM.h:
+
+../source/../lib/HC05/../MCP2515/MCP2515.h:

@@ -9,11 +9,11 @@
 #include "CAN.h"
 
 
-uint8_t can_receive_flag = 0;
+//uint8_t can_receive_flag = 0;
 
 ISR(INT7_vect) {
-	
-	can_receive_flag = 1;
+	printf("IN the isr");
+	//can_receive_flag = 1;
 		
 };
 	
@@ -26,17 +26,17 @@ void CAN_init(void){
 	MCP2515_bit_modify(MCP_RXB0CTRL,0b01100100, 0b01100000);
 	MCP2515_bit_modify(MCP_CANCTRL,MODE_MASK, MODE_NORMAL);
 	
-	
+	//sei();
 	
 	MCP2515_bit_modify(MCP_CANINTE,0b00000001,0xff);
 	MCP2515_bit_modify(0x60,0b01100000,0xff);
 	
 	//Low level
-	EICRB &= ~(1 << ISC71);
+	/*EICRB &= ~(1 << ISC71);
 	EICRB &= ~(1 << ISC70);
 	
 	//Enable external interrupt on pin 7
-	EIMSK |= (1 << INT7);
+	EIMSK |= (1 << INT7);*/
 	
 	//Enable global interrupt
 	//sei();
@@ -111,7 +111,7 @@ void CAN_recieve_data(can_message_t *message){
 	
 	//MCP_CANINTF &= (~(0b00000001));
 	
-	can_recieve_flag = FALSE;
+	//can_receive_flag = 0;
 	
 	
 }
