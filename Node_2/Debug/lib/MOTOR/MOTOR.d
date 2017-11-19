@@ -28,7 +28,8 @@ lib/MOTOR/MOTOR.d lib/MOTOR/MOTOR.o: ../lib/MOTOR/MOTOR.c \
  ../lib/MOTOR/../CAN_DEFINES/CAN_DEFINES.h ../lib/MOTOR/../DAC/DAC.h \
  ../lib/MOTOR/../PID/PID.h ../lib/MOTOR/../PID/../DAC/DAC.h \
  ../lib/MOTOR/../PID/../MOTOR/MOTOR.h ../lib/MOTOR/../PID/../ADC/ADC.h \
- ../lib/MOTOR/../PID/../ADC/../UART/UART.h
+ ../lib/MOTOR/../PID/../ADC/../UART/UART.h \
+ ../lib/MOTOR/../PID/../TIMER/TIMER.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h:
 
@@ -97,3 +98,5 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../lib/MOTOR/../PID/../ADC/ADC.h:
 
 ../lib/MOTOR/../PID/../ADC/../UART/UART.h:
+
+../lib/MOTOR/../PID/../TIMER/TIMER.h:

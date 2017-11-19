@@ -38,8 +38,8 @@ source/Node_2.d source/Node_2.o: ../source/Node_2.c \
  ../source/../lib/PID/../MOTOR/../CAN/CAN.h \
  ../source/../lib/PID/../MOTOR/../TWI/TWI_Master.h \
  ../source/../lib/PID/../MOTOR/../CAN_DEFINES/CAN_DEFINES.h \
- ../source/../lib/PID/../ADC/ADC.h ../source/../lib/TIMER/TIMER.h \
- ../source/../lib/SOLEDNOID/SOLENOID.h \
+ ../source/../lib/PID/../ADC/ADC.h ../source/../lib/PID/../TIMER/TIMER.h \
+ ../source/../lib/TIMER/TIMER.h ../source/../lib/SOLEDNOID/SOLENOID.h \
  ../source/../lib/CAN_DEFINES/CAN_DEFINES.h ../source/../lib/HC05/HC05.h \
  ../source/../lib/HC05/../CAN/CAN.h \
  ../source/../lib/HC05/../MOTOR/MOTOR.h \
@@ -148,6 +148,8 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 ../source/../lib/PID/../MOTOR/../CAN_DEFINES/CAN_DEFINES.h:
 
 ../source/../lib/PID/../ADC/ADC.h:
+
+../source/../lib/PID/../TIMER/TIMER.h:
 
 ../source/../lib/TIMER/TIMER.h:
 

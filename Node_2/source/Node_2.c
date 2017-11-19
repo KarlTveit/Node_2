@@ -82,16 +82,66 @@ int main(void) {
 	IR_init();
 	SOLENOID_init();
 	TIMER_init();
+	
+	printf("before pid init\n\n");
+	
 	PID_init();
-	printf("etter inits");
+	//printf("etter inits");
+	
+	
+	/*while(1) {
+		
+		printf("MOTOR_read() = %d         ", MOTOR_read());
+		printf("PID_scale(MOTOR_read()) = %d \n", PID_scale(MOTOR_read()));
+		
+	}*/
+	
+	can_message_t msg;
+	msg.id = 0;
+	msg.length = 1;
+	msg.data[0] = 0;
+
+	//msg.data[GAME_ENABLE] = 0;	//--> clearing bit in order to recognize new message
+		
+	CAN_recieve_data(&msg);
+	_delay_ms(10);
+	
 
 	
-	/*can_message_t gameover_msg;
+	/*while (PID_scale(MOTOR_read()) > (msg.data[2]) || PID_scale(MOTOR_read()) < (msg.data[2]- PID_control(msg))) {
+		/ *if (MOTOR_read() > 0 || MOTOR_read() < -9000) {
+			MOTOR_write_speed(0,RIGHT);
+		}
+		
+		else* / 
+		uint8_t target = msg.data[2];
+		
+		if (PID_get_flag == 1) {
+			target = target - PID_control(msg);
+		}
+		
+		if (PID_scale(MOTOR_read()) < (msg.data[2]- PID_control(msg))) {
+			MOTOR_write_speed(127*((msg.data[2]-PID_scale(MOTOR_read()))/255),RIGHT);
+		}
+		else if (PID_scale(MOTOR_read()) > (msg.data[2]- PID_control(msg))) {
+			MOTOR_write_speed(127*((msg.data[2]-PID_scale(MOTOR_read()))/255),LEFT);
+		}
+		else {
+			MOTOR_write_speed(0,RIGHT);
+		}
+	}
+*/
+
+
+	
+	can_message_t gameover_msg;
 	gameover_msg.id = GAMEOVER_DATA_ID;
 	gameover_msg.length = 1;
 	gameover_msg.data[0] = FALSE;
 	
-	uint8_t count = 0;*/
+	/*uint8_t count = 0;*/
+	
+	
 	
 /*
 	while(1){
@@ -109,18 +159,17 @@ int main(void) {
 	}
 	*/
 
-/*
-		while (1)
+		/*while (1)
 		{	
 			//printf("PWM CONVERT: %d\n\n", (uint8_t)(((17*10)-5)/250)*(31-16) + 16);
-			HC05_receive();
-			printf("App_data = %d\n\n", HC05_get_app_data());
+			/ *HC05_receive();* /
+			
 			
 			
 			HC05_set_control_input();
 			
-		}
-*/
+		}*/
+
 	//SOLENOID_disable();
 		while(1){
 		//_delay_ms(100);
@@ -147,12 +196,12 @@ int main(void) {
 		if (msg.id == GAME_ID /*&& msg.data[GAME_ENABLE]*/ && msg.length == 7) {
 			
 				//MOTOR_write_pos(PID_control(msg));
-				PID_update_ref(msg.data[2]);
+				//PID_update_ref(msg.data[2]);
 			
 			float dc = PWM_get_duty_cycle(msg);
 			PWM_set_duty_cycle(dc);
 		
-			printf("In the if");
+			//printf("In the if");
 		
 			
 			
@@ -170,7 +219,11 @@ int main(void) {
 				}
 		
 					//uint8_t target_pos = msg.data[MOTOR_REF];
-					MOTOR_write_pos(PID_control(msg));
+					printf("msg.data[2] = %d\n", msg.data[2]);
+					
+					printf("PID_control(msg) = %d\n\n", PID_control(msg));
+					
+					MOTOR_write_pos(msg.data[2] /*- PID_control(msg)*/);
 			
 					//MOTOR_write_speed(MOTOR_get_speed(msg),MOTOR_get_direction(msg));
 					//printf("Motor speed: %d\nMotor dir: %d\n", MOTOR_get_speed(msg),MOTOR_get_direction(msg));
@@ -195,6 +248,44 @@ int main(void) {
 		
 		
 				//MCP_CANINTF = MCP_CANINTF | 0b00000001;
+	}
+	else if (msg.id == WIRELESS_ID) {
+		uint8_t enable = FALSE;
+		if (HC05_receive() == PLAY) {
+			enable = TRUE;
+			TIMER_start(highscore_timer);
+		}
+		
+		while(enable) {
+			HC05_set_control_input();
+		}
+		
+	/*	static uint8_t game_enable = FALSE;
+		
+		if (HC05_receive() == PLAY) {
+			game_enable = TRUE;
+			TIMER_start(highscore_timer);
+		}
+		
+		
+		while (game_enable) {
+			HC05_set_control_input();
+			
+			
+			if (IR_read() < 15) {
+				printf("Sending gameover message \n\n");
+				gameover_msg.data[0] = TRUE;
+				
+				CAN_send_message(&gameover_msg);
+				_delay_ms(1);
+				CAN_print_message(gameover_msg);
+				
+				game_enable = FALSE;
+
+			}
+		}*/
+			
+		
 	}
 	}
 	printf("OUTTA WHILE");

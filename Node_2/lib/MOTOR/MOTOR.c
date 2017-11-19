@@ -13,9 +13,10 @@
 max = -8284
 min = */
 
-
+uint8_t speed = 100;
+/*
 static int16_t rot_max = 0;
-static int16_t rot_min = 0;
+static int16_t rot_min = 0;*/
 
 
 void MOTOR_init(void) {
@@ -94,34 +95,43 @@ void MOTOR_write_speed(uint8_t speed, uint8_t direction) {
 
 void MOTOR_write_pos(int16_t target_pos) {
 	
-	int16_t current_pos = PID_scale(MOTOR_read());
-	if (target_pos < current_pos)
-	{
-		printf("target < current\n");
-	}
-	
-	printf("target pos = %d\n current pos = %d\n motor read = %d\n rotmax%d\n rotmin%d\n" ,target_pos,current_pos,PID_scale(MOTOR_read()),rot_max,rot_min);
-	
-	if (target_pos > current_pos) {
-		//PORTH |= (1<<PH1);
-		while (target_pos > PID_scale(MOTOR_read())) {
-			//DAC_write(127);
-			printf("I IS HERE");
-			MOTOR_write_speed(127,RIGHT);
-			_delay_ms(100);
+	/*while (PID_scale(MOTOR_read()) > (target_pos+5) || PID_scale(MOTOR_read()) < (target_pos-5)) {
+		if (PID_scale(MOTOR_read()) > (target_pos+5)) {
+			MOTOR_write_speed(speed,RIGHT);
 		}
-	}
+		else if (PID_scale(MOTOR_read()) < (target_pos-5)) {
+			MOTOR_write_speed(speed,LEFT);
+		}
+		else {
+			MOTOR_write_speed(0,RIGHT);
+		}
+	}*/
 	
-	 if (target_pos < current_pos){
-		while (target_pos < PID_scale(MOTOR_read())) {
+	
+		uint8_t current_pos = PID_scale(MOTOR_read());
+	
+		
+		if (target_pos+30 > current_pos) {
 			//PORTH &= ~(1<<PH1);
-			//printf("INT HE LOOP");
+			printf("current pos = %d\n target pos %d \n", current_pos, target_pos);
 			//DAC_write(127);*/
-			MOTOR_write_speed(100,LEFT);
-			_delay_ms(100);
+			
+			MOTOR_write_speed(speed,RIGHT);
+			printf("target_pos+20 < current_pos\n");
 		}
-	}
-}
+	
+		else if (target_pos-30 < current_pos) {
+			
+			MOTOR_write_speed(speed,LEFT);
+			printf("target_pos-5 > current_pos\n");
+		}
+		else {
+			MOTOR_write_speed(0,RIGHT);
+			printf("nuthiiin");
+		}
+	
+	printf("target pos = %d\n current pos = %d\n motor read = %d\n rotmax%d\n rotmin%d\n" ,target_pos,current_pos,PID_scale(MOTOR_read()),PID_get_rot_max(),0);
+	 }
 
 
 

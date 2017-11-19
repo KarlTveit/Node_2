@@ -7,8 +7,8 @@
 
 #include "HC05.h"
 
-static volatile uint8_t HC05_flag = 0;
-volatile uint8_t app_data = 0;
+static /*volatile */uint8_t HC05_flag = 0;
+/*volatile */uint8_t app_data = 0;
 
 void HC05_init(unsigned int ubrr) {
 	
@@ -62,30 +62,34 @@ uint8_t HC05_receive(void) {
 uint8_t HC05_set_control_input(void) {
 	
 	app_data = HC05_receive();
+	printf("App_data = %d\n\n", HC05_get_app_data());
 	
-	if ( app_data == PLAY || app_data == RESET ) {
-		TIMER_start();
-		return 1;
-	
-	if ( app_data == SHOOT ) {
+	if( app_data == PLAY || app_data == RESET ) {
+		//TIMER_start();
+		printf("APP DATA RETT \n\n");
+		//return 1;
+	}
+	if( app_data == SHOOT ) {
 		SOLENOID_enable();
 		printf("SOLENOID_enabled\n");
 		_delay_ms(50);
 		SOLENOID_disable();
-		return 0;
+		//return 0;
 	}
-	else if ( app_data > SERVO_LOWER_LIM && app_data < SERVO_UPPER_LIM ) {
-		PWM_set_duty_cycle(HC05_convert_to_servo_dc(app_data));
-		return 0;
+	else if( app_data > SERVO_LOWER_LIM && app_data < SERVO_UPPER_LIM ) {
+		PWM_set_duty_cycle(app_data);
+		//return 0;
 	}
-	else if (app_data > MOTOR_LOWER_LIM && app_data < MOTOR_UPPER_LIM ) {
+	else if(app_data > MOTOR_LOWER_LIM && app_data < MOTOR_UPPER_LIM ) {
+		//printf("nå skal jeg styre motoren :) \n\n");
 		MOTOR_write_speed(HC05_convert_to_motor_speed(app_data), HC05_convert_to_motor_direction(app_data));
-		return 0;
+		//return 0;
 	}
+	
 	
 	return app_data;
 	
-	}
+
 }
 
 uint8_t HC05_get_app_data(void) {
@@ -97,7 +101,7 @@ uint8_t HC05_convert_to_motor_speed(uint8_t data) {
 	if (abs(data-50-90) < 15) {
 		speed = 0;
 	}
-	return speed*1.5;
+	return speed*1.8;
 }
 
 uint8_t HC05_convert_to_motor_direction(uint8_t data) {

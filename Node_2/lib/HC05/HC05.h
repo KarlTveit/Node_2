@@ -24,7 +24,7 @@
 #define PLAY	1
 #define RESET	2
 #define QUIT	3
-#define SHOOT	4
+#define SHOOT	250
 
 #define SERVO_LOWER_LIM		5
 #define SERVO_UPPER_LIM		30
