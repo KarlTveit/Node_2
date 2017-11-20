@@ -10,6 +10,7 @@
 
 #include <avr/io.h>
 #include "../CAN/CAN.h"
+#include "../DEFINITIONS.h"
 
 uint8_t IR_read(void);
 void IR_init(void);

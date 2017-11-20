@@ -14,6 +14,7 @@
 #define PWM_max 30
 
 #include "../CAN/CAN.h"
+#include "../DEFINITIONS.h"
 
 void PWM_init(void);
 

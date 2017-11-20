@@ -11,9 +11,10 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "../DEFINITIONS.h"
+#include "../TWI/TWI_Master.h"
 
 void DAC_init(void);
-
 void DAC_write(uint8_t data);
 
 

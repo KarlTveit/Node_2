@@ -8,79 +8,125 @@
 #include <stdlib.h>
 #include "MOTOR.h"
 #include "../DAC/DAC.h"
-#include "../PID/PID.h"
-/*
-max = -8284
-min = */
 
-uint8_t speed = 100;
-/*
-static int16_t rot_max = 0;
-static int16_t rot_min = 0;*/
+volatile int16_t rot_max = 0;
+volatile int16_t rot_min = 0;
 
 
 void MOTOR_init(void) {
-	//Setting output-pins:
-	DDRH |= (1<<DDH1)
-	|  (1<<DDH3)
-	|  (1<<DDH4)
-	|  (1<<DDH5)
-	|  (1<<DDH6);
-	TWI_Master_Initialise();
-	PORTH |= (1<<EN)		//Enable motor
-		  |  (1<<DIR);		//Motor direction
-	PORTH &=  ~(1<<_RST);		//Counter reset
-	PORTH |=  (1<<_RST);
-	PORTH &= ~(1<<_OE);		//Allowing the counter to appear on MJ2
-	PORTH &= ~(1<<SEL);		//Selecting high byte (MSB)
 	
+	//Setting output-pins:
+	DDRH |= (1 << DDH1) | (1 << DDH3) | (1 << DDH4) | (1 << DDH5) | (1 << DDH6); 
+	
+	TWI_Master_Initialise();
+	
+	//Enable motor
+	PORTH |= (1 << EN);
+	
+	//Motor direction
+	PORTH |= (1 << DIR);		
+	
+	//Counter reset		
+	PORTH &=  ~(1 << _RST);		
+	PORTH |=  (1 << _RST);
+	
+	//Allowing the counter to appear on MJ2
+	PORTH &= ~(1 << _OE);	
+	
+	//Selecting high byte (MSB)	
+	PORTH &= ~(1 << SEL);
+	
+	//Setting rot_min
+	MOTOR_write(127,LEFT);
+	_delay_ms(600);
+	MOTOR_write(0,LEFT);
+	
+	//Resetting the encoder so that encoder value = 0
+	while (MOTOR_read()!= 0){ 
+		
+		_delay_ms(20);
+		PORTH &= ~(1<<_RST);
+		_delay_ms(20);
+		PORTH |=  (1<<_RST);
+		
+	}
+	
+	rot_min = MOTOR_read();
+	_delay_ms(1000);
+	
+	
+	//Setting rot_max
+	MOTOR_write(127,RIGHT);
+	_delay_ms(600);
+	MOTOR_write(0,RIGHT);
+
+	rot_max = MOTOR_read();
+	_delay_ms(1000);
+	
+	
+	//Initial position in center
+	MOTOR_write(127,LEFT);
+	_delay_ms(300);
+	MOTOR_write(0,LEFT);		
 
 }
- void MOTOR_encoder_reset(void){
-	PORTH &= ~(1<<_OE);		//Allowing the counter to appear on MJ2
-	PORTH &= ~(1<<SEL);		//Selecting high byte (MSB)
+
+
+
+ void MOTOR_encoder_reset(void){ 
+	 
+	 //Allowing the counter to appear on MJ2
+	PORTH &= ~(1 << _OE);	
 	
-	
+	//Selecting high byte (MSB)	
+	PORTH &= ~(1 << SEL);		
 	_delay_us(25);
 	
 	uint8_t msb = PINK;
-	PORTH |= (1<<SEL);		//Selecting low byte (LSB)
 	
+	//Selecting low byte (LSB)
+	PORTH |= (1 << SEL);		
 	_delay_us(25);
 	
 	uint8_t lsb = PINK;
-	PORTH &= ~(1<<_RST);
+	
+	//Counter reset	
+	PORTH &= ~(1 << _RST);
 	_delay_ms(20);
-	PORTH |=  (1<<_RST);
+	PORTH |=  (1 << _RST);
+	
+	//Denying the counter to appear on MJ2
 	PORTH |= (1<<_OE);
 	 
  }
+ 
 
 
 uint16_t MOTOR_read(void) {
 	
-	PORTH &= ~(1<<_OE);		//Allowing the counter to appear on MJ2
-	PORTH &= ~(1<<SEL);		//Selecting high byte (MSB)
+	PORTH &= ~(1 << _OE);	
 	
-	
+	//Selecting high byte (MSB)	
+	PORTH &= ~(1 << SEL);		
 	_delay_us(25);
 	
 	uint8_t msb = PINK;
-	PORTH |= (1<<SEL);		//Selecting low byte (LSB)
 	
+	//Selecting low byte (LSB)
+	PORTH |= (1 << SEL);		
 	_delay_us(25);
 	
 	uint8_t lsb = PINK;
-	//PORTH &= ~(1<<_RST);
-	//PORTH |=  (1<<_RST);
-	PORTH |= (1<<_OE);
+
+	PORTH |= (1 << _OE);
 	
+	//Returning 16 bit
 	return (msb << 8) | lsb;
 	
 }
 
 
-void MOTOR_write_speed(uint8_t speed, uint8_t direction) {
+void MOTOR_write(uint8_t speed, uint8_t direction) {
 	
 	if (direction == RIGHT) {
 		PORTH |= (1<<PH1);
@@ -88,89 +134,63 @@ void MOTOR_write_speed(uint8_t speed, uint8_t direction) {
 	else {
 		PORTH &= ~(1<<PH1);
 	}
+	
 	DAC_write(speed);
+	
 }
 
 
+//P controlled 
+void MOTOR_position_control(int16_t target_pos) {
 
-void MOTOR_write_pos(int16_t target_pos) {
-	
-	/*while (PID_scale(MOTOR_read()) > (target_pos+5) || PID_scale(MOTOR_read()) < (target_pos-5)) {
-		if (PID_scale(MOTOR_read()) > (target_pos+5)) {
-			MOTOR_write_speed(speed,RIGHT);
-		}
-		else if (PID_scale(MOTOR_read()) < (target_pos-5)) {
-			MOTOR_write_speed(speed,LEFT);
-		}
-		else {
-			MOTOR_write_speed(0,RIGHT);
-		}
-	}*/
-	
-	
-		uint8_t current_pos = PID_scale(MOTOR_read());
-	
 		
-		if (target_pos+30 > current_pos) {
-			//PORTH &= ~(1<<PH1);
-			printf("current pos = %d\n target pos %d \n", current_pos, target_pos);
-			//DAC_write(127);*/
-			
-			MOTOR_write_speed(speed,RIGHT);
-			printf("target_pos+20 < current_pos\n");
+		uint8_t current_pos = MOTOR_scale_to_8bit(MOTOR_read()); 
+		//Proportional regulation from feedback
+		uint8_t speed = abs(target_pos-current_pos)*1;
+		
+		//Saturation
+		if (speed > 120) {
+			speed = 120;
+		}
+		else if (speed < 60 && speed > 30) {
+			speed = 60;
+		}
+		
+		
+		if (target_pos/*+10 */> current_pos) {
+		
+			MOTOR_write(speed,RIGHT);
+		
 		}
 	
-		else if (target_pos-30 < current_pos) {
+		else if (target_pos/*-10*/ < current_pos) {
 			
-			MOTOR_write_speed(speed,LEFT);
-			printf("target_pos-5 > current_pos\n");
+			MOTOR_write(speed,LEFT);
+			
 		}
 		else {
-			MOTOR_write_speed(0,RIGHT);
-			printf("nuthiiin");
+			MOTOR_write(0,RIGHT);
+			
 		}
 	
-	printf("target pos = %d\n current pos = %d\n motor read = %d\n rotmax%d\n rotmin%d\n" ,target_pos,current_pos,PID_scale(MOTOR_read()),PID_get_rot_max(),0);
+	
 	 }
 
 
 
 
 
-uint8_t MOTOR_get_speed(can_message_t msg){
-
-	/*can_message_t msg;
-	CAN_recieve_data(&msg);*/
+uint8_t MOTOR_scale_to_8bit(int16_t encoder_val) {
 	
-	int8_t pos = msg.data[MOTOR_REF]-127;
-	uint8_t speed = (abs(pos))*0.9/*+ PID_control()*/;
-	if (abs(pos) < 70) {
-		speed = speed*1.6;
+	if (encoder_val < rot_max) {
+		encoder_val = rot_max;
 	}
-	else if (abs(pos) < 110){
-		speed = speed*1.2;
+	else if (encoder_val > rot_min) {
+		encoder_val = rot_min;
 	}
 	
+	uint8_t val = -(encoder_val *(255.0/rot_max));
 	
-	return speed;
-};
-
-uint8_t MOTOR_get_direction(can_message_t msg) {
-
-/*
-	can_message_t msg;
-	CAN_recieve_data(&msg);	*/
-	
-	if (msg.data[MOTOR_REF] > 127) {
-		return RIGHT;
-	}
-	return LEFT;
-	
+	return 255-val;
 }
 
-
-/*
-uint8_t MOTOR_scale(int8_t encoder_val) {
-	return (uint8_t)((encoder_val-rot_min)/(rot_max-rot_min))*255;
-}
-	*/

@@ -8,7 +8,9 @@
 
 #ifndef TIMER_H_
 #define TIMER_H_
-#include<avr/io.h>
+
+#include "../DEFINITIONS.h"
+#include <avr/io.h>
 #include <avr/interrupt.h> 
 #include <util/delay.h>
 

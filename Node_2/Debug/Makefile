@@ -37,18 +37,13 @@ SUBDIRS :=  \
 ../lib/ADC/ \
 ../lib/CAN/ \
 ../lib/DAC/ \
-../lib/JOY/ \
 ../lib/MCP2515/ \
-../lib/MENU/ \
 ../lib/IR \
 ../lib/MOTOR \
-../lib/CAN_DEFINES \
 ../lib/HC05 \
 ../lib/SOLEDNOID \
-../lib/PID \
 ../lib/TIMER \
 ../lib/PWM \
-../lib/OLED/ \
 ../lib/SPI/ \
 ../lib/SRAM/ \
 ../lib/TWI/ \
@@ -60,16 +55,11 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../lib/ADC/ADC.c \
 ../lib/CAN/CAN.c \
-../lib/CAN_DEFINES/CAN_DEFINES.c \
 ../lib/DAC/DAC.c \
 ../lib/HC05/HC05.c \
 ../lib/IR/IR.c \
-../lib/JOY/JOY.c \
 ../lib/MCP2515/MCP2515.c \
-../lib/MENU/MENU.c \
 ../lib/MOTOR/MOTOR.c \
-../lib/OLED/OLED.c \
-../lib/PID/PID.c \
 ../lib/PWM/PWM.c \
 ../lib/SOLEDNOID/SOLENOID.c \
 ../lib/SPI/SPI.c \
@@ -89,16 +79,11 @@ ASM_SRCS +=
 OBJS +=  \
 lib/ADC/ADC.o \
 lib/CAN/CAN.o \
-lib/CAN_DEFINES/CAN_DEFINES.o \
 lib/DAC/DAC.o \
 lib/HC05/HC05.o \
 lib/IR/IR.o \
-lib/JOY/JOY.o \
 lib/MCP2515/MCP2515.o \
-lib/MENU/MENU.o \
 lib/MOTOR/MOTOR.o \
-lib/OLED/OLED.o \
-lib/PID/PID.o \
 lib/PWM/PWM.o \
 lib/SOLEDNOID/SOLENOID.o \
 lib/SPI/SPI.o \
@@ -111,16 +96,11 @@ source/Node_2.o
 OBJS_AS_ARGS +=  \
 lib/ADC/ADC.o \
 lib/CAN/CAN.o \
-lib/CAN_DEFINES/CAN_DEFINES.o \
 lib/DAC/DAC.o \
 lib/HC05/HC05.o \
 lib/IR/IR.o \
-lib/JOY/JOY.o \
 lib/MCP2515/MCP2515.o \
-lib/MENU/MENU.o \
 lib/MOTOR/MOTOR.o \
-lib/OLED/OLED.o \
-lib/PID/PID.o \
 lib/PWM/PWM.o \
 lib/SOLEDNOID/SOLENOID.o \
 lib/SPI/SPI.o \
@@ -133,16 +113,11 @@ source/Node_2.o
 C_DEPS +=  \
 lib/ADC/ADC.d \
 lib/CAN/CAN.d \
-lib/CAN_DEFINES/CAN_DEFINES.d \
 lib/DAC/DAC.d \
 lib/HC05/HC05.d \
 lib/IR/IR.d \
-lib/JOY/JOY.d \
 lib/MCP2515/MCP2515.d \
-lib/MENU/MENU.d \
 lib/MOTOR/MOTOR.d \
-lib/OLED/OLED.d \
-lib/PID/PID.d \
 lib/PWM/PWM.d \
 lib/SOLEDNOID/SOLENOID.d \
 lib/SPI/SPI.d \
@@ -155,16 +130,11 @@ source/Node_2.d
 C_DEPS_AS_ARGS +=  \
 lib/ADC/ADC.d \
 lib/CAN/CAN.d \
-lib/CAN_DEFINES/CAN_DEFINES.d \
 lib/DAC/DAC.d \
 lib/HC05/HC05.d \
 lib/IR/IR.d \
-lib/JOY/JOY.d \
 lib/MCP2515/MCP2515.d \
-lib/MENU/MENU.d \
 lib/MOTOR/MOTOR.d \
-lib/OLED/OLED.d \
-lib/PID/PID.d \
 lib/PWM/PWM.d \
 lib/SOLEDNOID/SOLENOID.d \
 lib/SPI/SPI.d \
@@ -219,16 +189,6 @@ LINKER_SCRIPT_DEP+=
 
 
 
-
-
-
-
-
-
-
-
-
-
 lib/ADC/%.o: ../lib/ADC/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
@@ -237,13 +197,6 @@ lib/ADC/%.o: ../lib/ADC/%.c
 	
 
 lib/CAN/%.o: ../lib/CAN/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-lib/CAN_DEFINES/%.o: ../lib/CAN_DEFINES/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
@@ -271,13 +224,6 @@ lib/IR/%.o: ../lib/IR/%.c
 	@echo Finished building: $<
 	
 
-lib/JOY/%.o: ../lib/JOY/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 lib/MCP2515/%.o: ../lib/MCP2515/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
@@ -285,28 +231,7 @@ lib/MCP2515/%.o: ../lib/MCP2515/%.c
 	@echo Finished building: $<
 	
 
-lib/MENU/%.o: ../lib/MENU/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
 lib/MOTOR/%.o: ../lib/MOTOR/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-lib/OLED/%.o: ../lib/OLED/%.c
-	@echo Building file: $<
-	@echo Invoking: AVR/GNU C Compiler : 4.8.1
-	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-lib/PID/%.o: ../lib/PID/%.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 4.8.1
 	$(QUOTE)C:\Program Files (x86)\Atmel\Atmel Toolchain\AVR8 GCC\Native\3.4.1061\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG -DF_CPU=16000000  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

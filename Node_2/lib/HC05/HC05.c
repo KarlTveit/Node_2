@@ -12,6 +12,7 @@ static /*volatile */uint8_t HC05_flag = 0;
 
 void HC05_init(unsigned int ubrr) {
 	
+	//Clearing baud rate register 
 	UBRR1 = 0;
 	
 	//Setting TX pin as output
@@ -30,51 +31,46 @@ void HC05_init(unsigned int ubrr) {
 	UBRR1H = (unsigned char)(ubrr>>8);
 	UBRR1L = (unsigned char)ubrr;
 	
-	
 	//Frame format: 8 bit data, 2 stop bit
 	UCSR1C = (1<<USBS1)|(3<<UCSZ10);
 	
-	
-	
-		
 	//Enable RX Complete Interrupt
 	UCSR1B |= (1 << RXCIE1);
 
-	
 	//Global Interrupt Enable
 	sei();
 	
-
 }
 
 
 uint8_t HC05_receive(void) {
-	//printf("in HC05_receive\n\n ");
+	
 	//Waiting for message
 	while( !(UCSR1A & (1 << RXC1)) ) {};
 	
 	HC05_flag = 1;
 	
 	return UDR1;
+	
 }
 
 
-uint8_t HC05_set_control_input(void) {
+
+void HC05_set_control_input(void) {
 	
 	app_data = HC05_receive();
-	printf("App_data = %d\n\n", HC05_get_app_data());
 	
 	if( app_data == PLAY || app_data == RESET ) {
-		//TIMER_start();
-		printf("APP DATA RETT \n\n");
+		TIMER_start(highscore_timer);					
 		//return 1;
 	}
+	
+	
 	if( app_data == SHOOT ) {
 		SOLENOID_enable();
 		printf("SOLENOID_enabled\n");
 		_delay_ms(50);
 		SOLENOID_disable();
-		//return 0;
 	}
 	else if( app_data > SERVO_LOWER_LIM && app_data < SERVO_UPPER_LIM ) {
 		PWM_set_duty_cycle(app_data);
@@ -82,12 +78,9 @@ uint8_t HC05_set_control_input(void) {
 	}
 	else if(app_data > MOTOR_LOWER_LIM && app_data < MOTOR_UPPER_LIM ) {
 		//printf("nå skal jeg styre motoren :) \n\n");
-		MOTOR_write_speed(HC05_convert_to_motor_speed(app_data), HC05_convert_to_motor_direction(app_data));
+		MOTOR_write(HC05_convert_to_motor_speed(app_data), HC05_convert_to_motor_direction(app_data));
 		//return 0;
 	}
-	
-	
-	return app_data;
 	
 
 }
