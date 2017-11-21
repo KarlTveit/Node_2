@@ -5,15 +5,22 @@
  *  Author: karlmt
  */ 
 #include "DAC.h"
-#include "../TWI/TWI_Master.h"
-#define MAX520_ADDR 0b01011110
+
+
 
 void DAC_init(void){
+	
+	//Enable Global Interrupts
 	sei();
+	
 	TWI_Master_Initialise();
+	
 }
 
 void DAC_write(uint8_t data){
-	uint8_t msg[3] ={MAX520_ADDR,0,data};
-	TWI_Start_Transceiver_With_Data(msg,3);
+	
+	uint8_t msg[TWI_msg_size] = {MAX520_ADDR,0,data};
+		
+	TWI_Start_Transceiver_With_Data(msg,TWI_msg_size);
+	
 }

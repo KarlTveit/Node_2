@@ -1,4 +1,4 @@
-lib/PID/PID.d lib/PID/PID.o: ../lib/PID/PID.c ../lib/PID/PID.h \
+lib/HC05/HC05.d lib/HC05/HC05.o: ../lib/HC05/HC05.c ../lib/HC05/HC05.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
@@ -12,24 +12,29 @@ lib/PID/PID.d lib/PID/PID.o: ../lib/PID/PID.c ../lib/PID/PID.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
+ ../lib/HC05/../CAN/CAN.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
- ../lib/PID/../DAC/DAC.h ../lib/PID/../MOTOR/MOTOR.h \
- ../lib/PID/../MOTOR/../CAN/CAN.h \
- ../lib/PID/../MOTOR/../CAN/../MCP2515/MCP2515.h \
- ../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/SPI.h \
- ../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
- ../lib/PID/../MOTOR/../TWI/TWI_Master.h \
- ../lib/PID/../MOTOR/../CAN_DEFINES/CAN_DEFINES.h ../lib/PID/../ADC/ADC.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
- ../lib/PID/../ADC/../UART/UART.h ../lib/PID/../TIMER/TIMER.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h
+ ../lib/HC05/../CAN/../MCP2515/MCP2515.h \
+ ../lib/HC05/../CAN/../MCP2515/../SPI/SPI.h \
+ ../lib/HC05/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
+ ../lib/HC05/../CAN/../MCP2515/../SPI/../DEFINITIONS.h \
+ ../lib/HC05/../CAN/../MCP2515/../DEFINITIONS.h \
+ ../lib/HC05/../CAN/../DEFINITIONS.h ../lib/HC05/../MOTOR/MOTOR.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h \
+ ../lib/HC05/../MOTOR/../CAN/CAN.h \
+ ../lib/HC05/../MOTOR/../TWI/TWI_Master.h \
+ ../lib/HC05/../MOTOR/../DEFINITIONS.h \
+ ../lib/HC05/../SOLEDNOID/SOLENOID.h \
+ ../lib/HC05/../SOLEDNOID/../DEFINITIONS.h ../lib/HC05/../PWM/PWM.h \
+ ../lib/HC05/../PWM/../CAN/CAN.h ../lib/HC05/../PWM/../DEFINITIONS.h \
+ ../lib/HC05/../MCP2515/MCP2515.h ../lib/HC05/../TIMER/TIMER.h \
+ ../lib/HC05/../TIMER/../DEFINITIONS.h ../lib/HC05/../DEFINITIONS.h
 
-../lib/PID/PID.h:
+../lib/HC05/HC05.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
@@ -57,7 +62,11 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h:
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h:
+
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h:
+
+../lib/HC05/../CAN/CAN.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h:
 
@@ -65,32 +74,42 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h:
 
-../lib/PID/../DAC/DAC.h:
+../lib/HC05/../CAN/../MCP2515/MCP2515.h:
 
-../lib/PID/../MOTOR/MOTOR.h:
+../lib/HC05/../CAN/../MCP2515/../SPI/SPI.h:
 
-../lib/PID/../MOTOR/../CAN/CAN.h:
+../lib/HC05/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:
 
-../lib/PID/../MOTOR/../CAN/../MCP2515/MCP2515.h:
+../lib/HC05/../CAN/../MCP2515/../SPI/../DEFINITIONS.h:
 
-../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/SPI.h:
+../lib/HC05/../CAN/../MCP2515/../DEFINITIONS.h:
 
-../lib/PID/../MOTOR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:
+../lib/HC05/../CAN/../DEFINITIONS.h:
 
-../lib/PID/../MOTOR/../TWI/TWI_Master.h:
+../lib/HC05/../MOTOR/MOTOR.h:
 
-../lib/PID/../MOTOR/../CAN_DEFINES/CAN_DEFINES.h:
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h:
 
-../lib/PID/../ADC/ADC.h:
+../lib/HC05/../MOTOR/../CAN/CAN.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h:
+../lib/HC05/../MOTOR/../TWI/TWI_Master.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h:
+../lib/HC05/../MOTOR/../DEFINITIONS.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h:
+../lib/HC05/../SOLEDNOID/SOLENOID.h:
 
-../lib/PID/../ADC/../UART/UART.h:
+../lib/HC05/../SOLEDNOID/../DEFINITIONS.h:
 
-../lib/PID/../TIMER/TIMER.h:
+../lib/HC05/../PWM/PWM.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h:
+../lib/HC05/../PWM/../CAN/CAN.h:
+
+../lib/HC05/../PWM/../DEFINITIONS.h:
+
+../lib/HC05/../MCP2515/MCP2515.h:
+
+../lib/HC05/../TIMER/TIMER.h:
+
+../lib/HC05/../TIMER/../DEFINITIONS.h:
+
+../lib/HC05/../DEFINITIONS.h:

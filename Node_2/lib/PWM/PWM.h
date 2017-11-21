@@ -9,11 +9,12 @@
 #ifndef PWM_H_
 #define PWM_H_
 
-#define PWM_min 15.6-1.7
-#define PWM_mid	23.4-1.7
-#define PWM_max 31.2-1.7
+#define PWM_min 14
+#define PWM_mid	22
+#define PWM_max 30
 
 #include "../CAN/CAN.h"
+#include "../DEFINITIONS.h"
 
 void PWM_init(void);
 

@@ -10,24 +10,27 @@
 #define CAN_H_
 
 #include <util/delay.h>
-#include "../MCP2515/MCP2515.h"
+#include <avr/interrupt.h>
 #include <avr/io.h>
-//#include "../OLED/fonts.h"
+#include <stdlib.h>
+
+#include "../MCP2515/MCP2515.h"
+#include "../DEFINITIONS.h"
+
+
 typedef struct {
-	unsigned int id;
+	uint16_t id;
 	uint8_t length;
 	uint8_t data[8];
 }can_message_t;
 
 
-
 void CAN_init(void);
 void CAN_send_message(can_message_t *message);
-void CAN_error();
-void CAN_transmit_complete();
 void CAN_recieve_data(can_message_t *message);
-void CAN_int_vect();
 void CAN_print_message(can_message_t message);
+can_message_t* CAN_create_message(can_message_t* message, uint16_t id, uint8_t length, uint8_t data[]);
+
 
 
 

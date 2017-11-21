@@ -9,6 +9,8 @@
 #ifndef INCFILE1_H_
 #define INCFILE1_H_
 
+#include "../DEFINITIONS.h"
+
 void init_SRAM(void);
 void SRAM_test(void);
 

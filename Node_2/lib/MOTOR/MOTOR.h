@@ -23,7 +23,7 @@
 #include <avr/io.h>
 #include "../CAN/CAN.h"
 #include "../TWI/TWI_Master.h"
-#include "../CAN_DEFINES/CAN_DEFINES.h"
+#include "../DEFINITIONS.h"
 //Set EN on MJ1
 //Set DIR on MJ1
 //PROVIDE Analog value on DA1 on MJEX from 0V-5V
@@ -45,14 +45,10 @@ void MOTOR_init(void);
 
 
 uint16_t MOTOR_read(void);
-
-void MOTOR_write_speed(uint8_t speed, uint8_t direction);
-void MOTOR_write_pos(uint8_t target_pos);
-
-
-uint8_t MOTOR_get_speed(can_message_t msg);
-uint8_t MOTOR_get_direction(can_message_t msg);
-//uint8_t MOTOR_scale(int8_t encoder_val);
+void MOTOR_encoder_reset(void);
+void MOTOR_write(uint8_t speed, uint8_t direction);
+void MOTOR_position_control(int16_t target_pos);
+uint8_t MOTOR_scale_to_8bit(int16_t encoder_val);
 
 
 #endif /* MOTOR_H_ */

@@ -109,4 +109,7 @@ unsigned char TWI_Get_Data_From_Transceiver( unsigned char *, unsigned char );
 #define TWI_NO_STATE               0xF8  // No relevant state information available; TWINT = “0”
 #define TWI_BUS_ERROR              0x00  // Bus error due to an illegal START or STOP condition
 
+//General definitions
+#define TWI_msg_size 3
+
 #endif /* TWI_MASTER_H_ */

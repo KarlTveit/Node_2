@@ -1,4 +1,4 @@
-lib/IR/IR.d lib/IR/IR.o: ../lib/IR/IR.c ../lib/IR/IR.h \
+source/main.d source/main.o: ../source/main.c \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sfr_defs.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\inttypes.h \
@@ -11,29 +11,47 @@ lib/IR/IR.d lib/IR/IR.o: ../lib/IR/IR.c ../lib/IR/IR.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\version.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\fuse.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h \
- ../lib/IR/../CAN/CAN.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\math.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
- ../lib/IR/../CAN/../MCP2515/MCP2515.h \
- ../lib/IR/../CAN/../MCP2515/../SPI/SPI.h \
- ../lib/IR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
- ../lib/IR/../CAN/../MCP2515/../SPI/../DEFINITIONS.h \
- ../lib/IR/../CAN/../MCP2515/../DEFINITIONS.h \
- ../lib/IR/../CAN/../DEFINITIONS.h ../lib/IR/../DEFINITIONS.h \
- ../lib/IR/../ADC/ADC.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h \
  c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h \
- ../lib/IR/../ADC/../UART/UART.h \
- ../lib/IR/../ADC/../UART/../DEFINITIONS.h \
- ../lib/IR/../ADC/../DEFINITIONS.h \
- c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdbool.h
-
-../lib/IR/IR.h:
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h \
+ ../source/../lib/PWM/PWM.h ../source/../lib/PWM/../CAN/CAN.h \
+ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h \
+ ../source/../lib/PWM/../CAN/../MCP2515/MCP2515.h \
+ ../source/../lib/PWM/../CAN/../MCP2515/../SPI/SPI.h \
+ ../source/../lib/PWM/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h \
+ ../source/../lib/PWM/../CAN/../MCP2515/../SPI/../DEFINITIONS.h \
+ ../source/../lib/PWM/../CAN/../MCP2515/../DEFINITIONS.h \
+ ../source/../lib/PWM/../CAN/../DEFINITIONS.h \
+ ../source/../lib/PWM/../DEFINITIONS.h ../source/../lib/UART/UART.h \
+ ../source/../lib/UART/../DEFINITIONS.h ../source/../lib/ADC/ADC.h \
+ ../source/../lib/ADC/../UART/UART.h \
+ ../source/../lib/ADC/../UART/../DEFINITIONS.h \
+ ../source/../lib/ADC/../DEFINITIONS.h ../source/../lib/SRAM/SRAM.h \
+ ../source/../lib/SRAM/../DEFINITIONS.h ../source/../lib/SPI/SPI.h \
+ ../source/../lib/MCP2515/MCP2515.h ../source/../lib/CAN/CAN.h \
+ ../source/../lib/IR/IR.h ../source/../lib/IR/../CAN/CAN.h \
+ ../source/../lib/IR/../DEFINITIONS.h ../source/../lib/DAC/DAC.h \
+ ../source/../lib/DAC/../DEFINITIONS.h \
+ ../source/../lib/DAC/../TWI/TWI_Master.h \
+ ../source/../lib/TWI/TWI_Master.h ../source/../lib/TIMER/TIMER.h \
+ ../source/../lib/TIMER/../DEFINITIONS.h \
+ ../source/../lib/SOLEDNOID/SOLENOID.h \
+ ../source/../lib/SOLEDNOID/../DEFINITIONS.h ../source/../lib/HC05/HC05.h \
+ ../source/../lib/HC05/../CAN/CAN.h \
+ ../source/../lib/HC05/../MOTOR/MOTOR.h \
+ ../source/../lib/HC05/../MOTOR/../CAN/CAN.h \
+ ../source/../lib/HC05/../MOTOR/../TWI/TWI_Master.h \
+ ../source/../lib/HC05/../MOTOR/../DEFINITIONS.h \
+ ../source/../lib/HC05/../SOLEDNOID/SOLENOID.h \
+ ../source/../lib/HC05/../PWM/PWM.h \
+ ../source/../lib/HC05/../MCP2515/MCP2515.h \
+ ../source/../lib/HC05/../TIMER/TIMER.h \
+ ../source/../lib/HC05/../DEFINITIONS.h ../source/../lib/DEFINITIONS.h
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\io.h:
 
@@ -59,8 +77,6 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\lock.h:
 
-../lib/IR/../CAN/CAN.h:
-
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\util\delay_basic.h:
@@ -69,36 +85,98 @@ c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-g
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\interrupt.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h:
-
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h:
-
-../lib/IR/../CAN/../MCP2515/MCP2515.h:
-
-../lib/IR/../CAN/../MCP2515/../SPI/SPI.h:
-
-../lib/IR/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:
-
-../lib/IR/../CAN/../MCP2515/../SPI/../DEFINITIONS.h:
-
-../lib/IR/../CAN/../MCP2515/../DEFINITIONS.h:
-
-../lib/IR/../CAN/../DEFINITIONS.h:
-
-../lib/IR/../DEFINITIONS.h:
-
-../lib/IR/../ADC/ADC.h:
-
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\avr\sleep.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdio.h:
 
 c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdarg.h:
 
-../lib/IR/../ADC/../UART/UART.h:
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stddef.h:
 
-../lib/IR/../ADC/../UART/../DEFINITIONS.h:
+../source/../lib/PWM/PWM.h:
 
-../lib/IR/../ADC/../DEFINITIONS.h:
+../source/../lib/PWM/../CAN/CAN.h:
 
-c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\lib\gcc\avr\4.8.1\include\stdbool.h:
+c:\program\ files\ (x86)\atmel\atmel\ toolchain\avr8\ gcc\native\3.4.1061\avr8-gnu-toolchain\avr\include\stdlib.h:
+
+../source/../lib/PWM/../CAN/../MCP2515/MCP2515.h:
+
+../source/../lib/PWM/../CAN/../MCP2515/../SPI/SPI.h:
+
+../source/../lib/PWM/../CAN/../MCP2515/../SPI/../MCP2515/MCP2515.h:
+
+../source/../lib/PWM/../CAN/../MCP2515/../SPI/../DEFINITIONS.h:
+
+../source/../lib/PWM/../CAN/../MCP2515/../DEFINITIONS.h:
+
+../source/../lib/PWM/../CAN/../DEFINITIONS.h:
+
+../source/../lib/PWM/../DEFINITIONS.h:
+
+../source/../lib/UART/UART.h:
+
+../source/../lib/UART/../DEFINITIONS.h:
+
+../source/../lib/ADC/ADC.h:
+
+../source/../lib/ADC/../UART/UART.h:
+
+../source/../lib/ADC/../UART/../DEFINITIONS.h:
+
+../source/../lib/ADC/../DEFINITIONS.h:
+
+../source/../lib/SRAM/SRAM.h:
+
+../source/../lib/SRAM/../DEFINITIONS.h:
+
+../source/../lib/SPI/SPI.h:
+
+../source/../lib/MCP2515/MCP2515.h:
+
+../source/../lib/CAN/CAN.h:
+
+../source/../lib/IR/IR.h:
+
+../source/../lib/IR/../CAN/CAN.h:
+
+../source/../lib/IR/../DEFINITIONS.h:
+
+../source/../lib/DAC/DAC.h:
+
+../source/../lib/DAC/../DEFINITIONS.h:
+
+../source/../lib/DAC/../TWI/TWI_Master.h:
+
+../source/../lib/TWI/TWI_Master.h:
+
+../source/../lib/TIMER/TIMER.h:
+
+../source/../lib/TIMER/../DEFINITIONS.h:
+
+../source/../lib/SOLEDNOID/SOLENOID.h:
+
+../source/../lib/SOLEDNOID/../DEFINITIONS.h:
+
+../source/../lib/HC05/HC05.h:
+
+../source/../lib/HC05/../CAN/CAN.h:
+
+../source/../lib/HC05/../MOTOR/MOTOR.h:
+
+../source/../lib/HC05/../MOTOR/../CAN/CAN.h:
+
+../source/../lib/HC05/../MOTOR/../TWI/TWI_Master.h:
+
+../source/../lib/HC05/../MOTOR/../DEFINITIONS.h:
+
+../source/../lib/HC05/../SOLEDNOID/SOLENOID.h:
+
+../source/../lib/HC05/../PWM/PWM.h:
+
+../source/../lib/HC05/../MCP2515/MCP2515.h:
+
+../source/../lib/HC05/../TIMER/TIMER.h:
+
+../source/../lib/HC05/../DEFINITIONS.h:
+
+../source/../lib/DEFINITIONS.h:
