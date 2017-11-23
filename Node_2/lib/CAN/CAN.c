@@ -6,7 +6,6 @@
 */
 
 #include <stdio.h>
-#include <avr/interrupt.h>
 #include "CAN.h"
 
 	
@@ -44,6 +43,8 @@ void CAN_send_message(can_message_t *message){
 	MCP2515_request_to_send(MCP_RTS_TX0);
 	
 }
+
+
 
 
 

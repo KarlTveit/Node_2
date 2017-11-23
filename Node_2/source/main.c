@@ -61,7 +61,8 @@ int main(void) {
 	//uint8_t game_enable = FALSE;
 	float dc = 0;
 	uint8_t mot_ref = 0;
-	
+	can_message_t empty_msg;
+	empty_msg.id = EMPTY_ID;
 	
 	//Handling highscore timer
 	uint8_t timer_enabled = FALSE;
@@ -106,11 +107,12 @@ int main(void) {
 			
 			//Enable solenoid input from right button
 			if (receive_msg.data[SOLENOID_ENABLE]) {	
-				
+				receive_msg.data[SOLENOID_ENABLE] = 0;
 				SOLENOID_enable();
 				printf("SOLENOID_enabled\n");
-				_delay_ms(100);
+				_delay_ms(150);
 				SOLENOID_disable();
+				
 				
 			}
 			
@@ -125,6 +127,8 @@ int main(void) {
 					CAN_send_message(&gameover_msg);
 					_delay_ms(1);
 				}
+				//Clearing gameover state in Node 1
+				CAN_send_message(&empty_msg);
 			}
 			
 			break;
@@ -153,7 +157,8 @@ int main(void) {
 						CAN_send_message(&gameover_msg);
 						_delay_ms(1);
 					}
-					
+					//Clearing gameover state in Node 1
+					CAN_send_message(&empty_msg);
 				}
 					
 			}
